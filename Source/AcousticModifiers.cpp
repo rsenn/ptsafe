@@ -39,8 +39,6 @@ public:
      */
 	~AcousticFilter() {
 						
-		
-
 		stopThread(5000);
 		release();
 	}
