@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 8.00
+# Visual C++ Express 2005
+Project("{DDA2F1CF-FCBD-4DE1-6B96-54F3A680CE35}") = "Sound GUI", "Sound GUI.vcproj", "{21159AD5-8917-74AD-E6D1-FF41699EEB6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21159AD5-8917-74AD-E6D1-FF41699EEB6F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{21159AD5-8917-74AD-E6D1-FF41699EEB6F}.Debug|Win32.Build.0 = Debug|Win32
+		{21159AD5-8917-74AD-E6D1-FF41699EEB6F}.Release|Win32.ActiveCfg = Release|Win32
+		{21159AD5-8917-74AD-E6D1-FF41699EEB6F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
