@@ -149,7 +149,7 @@ GUIcomponent::GUIcomponent ()
 
 	// setup the directory watcher
 	numFiles = 0;
-	File folder = T("C:\\Program Files\\Sound GUI\\Data\\");
+	File folder = T("C:\\Program Files\\PTSAFE\\Data\\");
 	dirList.setDirectory(folder, false, true);	// don't watch folders, do watch files
 	dirList.addChangeListener(this);	// register our changeListener callback
 	thread.startThread (0);		// priority: lo 0..[3]....10 hi

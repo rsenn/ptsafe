@@ -80,7 +80,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -128,9 +128,9 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\juce;%(AdditionalIncludeDirectories);C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\test\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -160,7 +160,7 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>jucelib_static_Win32.lib;foolib.lib;mclmcrrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Documents and Settings\CBennett4\Desktop\Auditory Display files\juce\bin;C:\Program Files\MATLAB\R2009b\extern\lib\win32\microsoft;C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\test\Libraries</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\juce\bin;C:\Program Files\MATLAB\R2009b\extern\lib\win32\microsoft;..\..\Libraries</AdditionalLibraryDirectories>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
@@ -183,7 +183,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\juce;%(AdditionalIncludeDirectories);C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\test\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -216,7 +216,7 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>jucelib_static_Win32.lib;foolib.lib;mclmcrrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Documents and Settings\CBennett4\Desktop\Auditory Display files\juce\bin;C:\Program Files\MATLAB\R2009b\extern\lib\win32\microsoft;C:\Documents and Settings\cbennett4\Desktop\Auditory Display files\test\Libraries</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\juce\bin;C:\Program Files\MATLAB\R2009b\extern\lib\win32\microsoft;..\..\Libraries</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <Bscmake>

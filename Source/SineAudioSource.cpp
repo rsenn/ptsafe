@@ -35,8 +35,10 @@ public:
 		startThread(8);
 		setLevel(0); 	
 
-		jassert(mclInitializeApplication(NULL,0));
-		jassert(foolibInitialize());
+	//	jassert(mclInitializeApplication(NULL,0));
+	//	jassert(foolibInitialize());
+		mclInitializeApplication(NULL,0);
+		foolibInitialize();
 		state = mxCreateDoubleMatrix(1024, 1, mxREAL);
 	}
 

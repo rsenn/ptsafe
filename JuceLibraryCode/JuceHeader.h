@@ -20,7 +20,7 @@
 
 namespace ProjectInfo
 {
-    const char* const  projectName    = "Sound GUI";
+    const char* const  projectName    = "PT-SAFE";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }

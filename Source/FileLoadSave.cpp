@@ -83,7 +83,7 @@ public:
 
 protected:
     const String getDocumentTitle() {
-		return String("Sound GUI Settings");
+		return String("PT-SAFE Settings");
 	}
 
 /** Handles the user-selected file.

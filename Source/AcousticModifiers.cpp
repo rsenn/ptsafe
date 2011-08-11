@@ -130,7 +130,7 @@ public:
 
 		case AUDIOFILE:
 			// "plays" silence before user drops new alarm on
-			loadSoundFile(File("C:\\Program Files\\Sound GUI\\Sounds\\Silence.wav"));
+			loadSoundFile(File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav"));
 
 			break;
 
@@ -181,7 +181,7 @@ public:
 						else if (val > 0.33)
 							alarmToPlay = lowAlarm; //loadSoundFile(lowAlarm);
 						else
-							alarmToPlay = File("C:\\Program Files\\Sound GUI\\Sounds\\Silence.wav"); //loadSoundFile(File("C:\\Program Files\\Sound GUI\\Sounds\\Silence.wav"));
+							alarmToPlay = File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav"); //loadSoundFile(File("C:\\Program Files\\Sound GUI\\Sounds\\Silence.wav"));
 					break;
 
 				case AM:

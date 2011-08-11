@@ -42,7 +42,7 @@ public:
     //==============================================================================
     const String getApplicationName()
     {
-        return "Sound GUI";
+        return "PT-SAFE";
     }
 
     const String getApplicationVersion()
