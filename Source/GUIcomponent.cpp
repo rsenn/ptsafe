@@ -357,8 +357,12 @@ XmlElement GUIcomponent::loadSettings(void) {
 		comArray[i]->setUrgency((float)thisElem.getDoubleAttribute("urgency"));
 
 		if (comArray[i]->getAlarmID() == AUDIOFILE) { // if the alarm is an audiofile
-			StringArray soundFile (thisElem.getStringAttribute("soundFile"));	// create a string fromt he XML attribute
-			comArray[i]->filesDropped (soundFile, 0, 0);	// do a "fake" drag and drop of the file onto the GUI
+			StringArray soundFile0 (thisElem.getStringAttribute("soundFile0"));	// create a string from the XML attribute
+			StringArray soundFile1 (thisElem.getStringAttribute("soundFile1"));
+			StringArray tempArray;
+			tempArray.addArray(soundFile0);
+			tempArray.addArray(soundFile1);
+			comArray[i]->filesDropped (tempArray, 0, 0);	// do a "fake" drag and drop of the file onto the GUI
 		}
 
 		thisElem.removeAllAttributes();

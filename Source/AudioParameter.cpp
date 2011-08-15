@@ -436,7 +436,10 @@ void AudioParameter::filesDropped (const StringArray& filenames, int mouseX, int
 			s=filenames[i];
 			ref->addFile(AudioParameter::getOrder(), s);
 			fileLabel->setText(s,false);
-			soundFile = s;
+			if (i==0)
+				soundFile0 = s;
+			else if (i==1)
+				soundFile1 = s;
 		}
 	}
     //[/UserCode_filesDropped]

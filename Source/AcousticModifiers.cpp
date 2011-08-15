@@ -177,11 +177,11 @@ public:
 				case AUDIOFILE:
 					if ((type==AUDIOFILE))
 						if (val > 0.66)
-							alarmToPlay = highAlarm;//loadSoundFile(highAlarm);
+							alarmToPlay = highAlarm;
 						else if (val > 0.33)
-							alarmToPlay = lowAlarm; //loadSoundFile(lowAlarm);
+							alarmToPlay = lowAlarm;
 						else
-							alarmToPlay = File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav"); //loadSoundFile(File("C:\\Program Files\\Sound GUI\\Sounds\\Silence.wav"));
+							alarmToPlay = File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav");
 					break;
 
 				case AM:

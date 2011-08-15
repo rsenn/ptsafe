@@ -60,8 +60,10 @@ public:
 		component->setAttribute("upperUrgDang", params.uppurg_dang);
 		component->setAttribute("normalUrg", params.normurg);
 		
-		if (audioParam->getAlarmID() == AUDIOFILE)
-			component->setAttribute("soundFile", audioParam->getSoundFile());
+		if (audioParam->getAlarmID() == AUDIOFILE) {
+			component->setAttribute("soundFile0", audioParam->getSoundFile0());
+			component->setAttribute("soundFile1", audioParam->getSoundFile1());
+		}
 		
 		// .. and add our new element to the parent node
 		settingsList->addChildElement(component);

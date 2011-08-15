@@ -84,7 +84,8 @@ public:
 	VitalSignParams getVitalSignParams(int);
 
 
-	String getSoundFile(void) {return soundFile;};
+	String getSoundFile0(void) {return soundFile0;};
+	String getSoundFile1(void) {return soundFile1;};
 
     //[/UserMethods]
 
@@ -120,7 +121,7 @@ private:
 	float startWarningLow, startNormal, startDangerHigh, startWarningHigh;
 
 	// sound file
-	String soundFile;
+	String soundFile0, soundFile1;
 
     //[/UserVariables]
 
