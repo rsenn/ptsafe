@@ -27,7 +27,7 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
-#include <src/juce_DefineMacros.h>
+#define T(stringLiteral)            JUCE_T(stringLiteral)
 //[/MiscUserDefs]
 
 //==============================================================================
@@ -434,7 +434,7 @@ void AudioParameter::filesDropped (const StringArray& filenames, int mouseX, int
 	if (alarmID==AUDIOFILE) {		// make sure its only a sound file type
 		for (int i=0; i<filenames.size(); i++) {	// grab all files dropped
 			s=filenames[i];
-			ref->addFile(AudioParameter::getOrder(), s);
+			ref->addSoundFile(AudioParameter::getOrder(), s);
 			fileLabel->setText(s,false);
 			if (i==0)
 				soundFile0 = s;

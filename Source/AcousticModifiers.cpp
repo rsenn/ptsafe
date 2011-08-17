@@ -238,23 +238,24 @@ public:
 
 				for (int ch = outputBuffer.getNumChannels(); --ch >=0;) {
 
+					// create matlab buffers of the appropriate length
 					x_ptr = mxCreateDoubleMatrix(numSamples, 1, mxREAL);
 					y_ptr = mxCreateDoubleMatrix(numSamples, 1, mxREAL);
 					
-
-
+					// deep-copy buffer data and convert from float to double
 					for (int ii=0; ii<numSamples; ii++) 
 						x[ii] = (double)*outputBuffer.getSampleData(ch, ii); 
 
-					
+					// take buffer data and pass into matlab pointer
 					memcpy(mxGetPr(x_ptr), x, numSamples*sizeof(double));
 
 					// call the implementation function
 					mlfFoo(2, &y_ptr, state_ptr, x_ptr, u_ptr, *state_ptr, vitalID_ptr);
 
+					// retrieve matlab pointer
 					y = mxGetPr(y_ptr);
 					
-					
+					// deep copy matlab output into audio buffer and convert from double back to float
 					for (int ii=0; ii<numSamples; ii++)
 						*outputBuffer.getSampleData(ch, ii) = (float)y[ii];
 
@@ -262,20 +263,37 @@ public:
 					mxDestroyArray(x_ptr); x_ptr=NULL;
 					mxDestroyArray(y_ptr); y_ptr=NULL;
 
-				}
-					
-
+				}	
 			}
+
+			else if (type==AUDIOFILE) {
+
+				for (int ch = outputBuffer.getNumChannels(); --ch >=0;) {
+
+					AudioSourceChannelInfo soundFileBuffer;	// create a buffer
+					AudioSampleBuffer sourceBuffer (1, numSamples);	// make it 1 ch, with numSamples
+					soundFileBuffer.buffer=&sourceBuffer;		
+					soundFileBuffer.startSample=startSample;
+					soundFileBuffer.numSamples=numSamples;
+					
+					audioFileSource->getNextAudioBlock(soundFileBuffer);	// put sound-file data into soundFileBuffer
+
+
+					//( destChannel, destStartSample, source, sourceChannel, sourceStartSample, numSamples, gain)
+					outputBuffer.addFrom(ch, startSample, sourceBuffer, 0, 0, numSamples, (float)masterLevel);
+
+				}
+
+			} 
 			else {
-			//NOTE: could potentially break-out audioFile in addition to MATLAB for array-processing
 
 				while (--numSamples >= 0)
 				{
 					for (int ch = outputBuffer.getNumChannels(); --ch >=0;) {
 						float inSample = *outputBuffer.getSampleData(ch, startSample);
-		///////////////////////////////////////////////////////////////////// KILLSWITCH ENGAGE
 
-				
+
+		///////////////////////////////////////////////////////////////////// KILLSWITCH ENGAGE		
 					switch(type) {
 
 						case DEFAULT_ALARM:
@@ -320,7 +338,7 @@ public:
 							*outputBuffer.getSampleData(ch, startSample) = inSample + (float)(temp * level*masterLevel);
 							break;
 
-
+/*
 						case AUDIOFILE:
 							//it++;	
 							AudioSourceChannelInfo bufferToFill;	// create a buffer
@@ -333,11 +351,10 @@ public:
 							*outputBuffer.getSampleData(ch, startSample) = inSample+(*bufferToFill.buffer->getSampleData(0))*(float)masterLevel; // assign to outSample
 
 							break;
-
+*/
 						}//switch
-					
-
 		////////////////////////////////////////////////////////////////////// END SWITCH
+
 
 
 					} // end channel loop
@@ -510,7 +527,7 @@ public:
 
 		if (wasInit) {	// if already declared as a different alarm type
 			setReady(false);	// set not-ready so sound don't try to play while loading file
-			readPos = audioFileSource->getNextReadPosition();
+			readPos = (int)audioFileSource->getNextReadPosition();
 
 			audioFileSource->~AudioFormatReaderSource();	
 		}
@@ -525,6 +542,7 @@ public:
 			audioFileSource = new AudioFormatReaderSource (reader, true);
 
 		audioFileSource->setNextReadPosition(readPos);
+		//audioFileSource->setNextReadPosition(0);
 		audioFileSource->prepareToPlay(samplesPerBlock, sampleRate);
 		setReady(true);
 	}

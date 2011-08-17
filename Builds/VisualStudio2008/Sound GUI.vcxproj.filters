@@ -63,4 +63,10 @@
       <Filter>Sound GUI\Source</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Libraries\ptsafe.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Libraries\resource.rc" />
+  </ItemGroup>
 </Project>

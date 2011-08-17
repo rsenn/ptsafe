@@ -1,6 +1,6 @@
 #include "GUIcomponent.h"
 #include "AcousticModifiers.cpp"
-#include <src/juce_DefineMacros.h>
+#define T(stringLiteral)            JUCE_T(stringLiteral)
 
 /** SineAudioSource
  *  The main goals of this class are to 1) produce an appropriate sinusoid that corresponds in frequency to 
@@ -102,12 +102,12 @@ public:
 	/** This loads a sound file located at path s into an element of the audioChain (called from 
 	 *  AudioParameter).
 	 */
-	void addFile(int order, String s) {
+	void addSoundFile(int order, String s) {
 				
 		if (s.containsIgnoreCase(T("med")) | s.containsIgnoreCase(T("low")) | s.containsIgnoreCase(T("caution")) | s.containsIgnoreCase(T("warn"))) {	// medium urgency
 			audioChain[order]->lowAlarm = s;
 		}
-		else if (s.containsIgnoreCase(T("high")) | s.containsIgnoreCase(T("emergency")) | s.containsIgnoreCase(T("danger"))) {	// high urgency
+		else if (s.containsIgnoreCase(T("high")) | s.containsIgnoreCase(T("emergency")) | s.containsIgnoreCase(T("danger")) | s.containsIgnoreCase(T("upper")) ) {	// high urgency
 			audioChain[order]->highAlarm = s;
 		}
 
