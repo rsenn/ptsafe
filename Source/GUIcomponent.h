@@ -106,6 +106,7 @@ public:
 	void saveSettings(void);
 	XmlElement loadSettings(void);
 	void loadSettings2(void);
+	File getMostRecentFile(void);
 	SineAudioSource *sineAudioSource;
 
     //[/UserMethods]
@@ -129,6 +130,7 @@ private:
 	TimeSliceThread thread;
 	DirectoryContentsList dirList;
 	int numFiles;
+	File currentFile;
 
 	// timer types
 	enum timerTypes {dirTimer, loadTimer};

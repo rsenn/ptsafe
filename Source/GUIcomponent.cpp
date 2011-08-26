@@ -153,6 +153,7 @@ GUIcomponent::GUIcomponent ()
 	dirList.setDirectory(folder, false, true);	// don't watch folders, do watch files
 	dirList.addChangeListener(this);	// register our changeListener callback
 	thread.startThread (0);		// priority: lo 0..[3]....10 hi
+	currentFile = getMostRecentFile();
 	startTimer(dirTimer, 100);
 
     //[/Constructor]
@@ -398,38 +399,50 @@ void GUIcomponent::removeObject(int obj) {
 
 void GUIcomponent::timerCallback(int timerID)
 {
-	if (timerID==dirTimer)
+	if (timerID==dirTimer) {
 		dirList.refresh();
+	}
 	if (timerID==loadTimer) {
 		loadSettings2();
 		stopTimer(loadTimer);
 	}
 }
 
+File GUIcomponent::getMostRecentFile(void)
+{
+	numFiles = dirList.getNumFiles();
+
+	DirectoryContentsList::FileInfo tempFileInfo;
+	String mostRecentFile(String::empty);
+	int fileLoc;
+
+	// look at all the files, and find the most recent one
+	for (int j = 0; j<numFiles; j++) {
+		dirList.getFileInfo(j, tempFileInfo);
+		// check and see if tFI comes later than mRF alphabetically
+		if( tempFileInfo.filename.compare(mostRecentFile) ) {
+			mostRecentFile = tempFileInfo.filename;
+			fileLoc = j;		// if we found a more recent one, bookmark the index
+		}
+	}
+	return dirList.getFile(fileLoc);
+}
 void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 	// when the directory is updated
 {
-	if (dirList.getNumFiles() > numFiles) {
-		// get the new numFiles
-		numFiles = dirList.getNumFiles();
+	File temp = getMostRecentFile();
 
-		DirectoryContentsList::FileInfo tempFileInfo;
-		String mostRecentFile(String::empty);
-		int fileLoc;
+	String a = currentFile.getFileNameWithoutExtension();
+	String b = temp.getFileNameWithoutExtension();
 
-		// look at all the files, and find the most recent one
-		for (int j = 0; j<numFiles; j++) {
-			dirList.getFileInfo(j, tempFileInfo);
-			// check and see if tFI comes later than mRF alphabetically
-			if( tempFileInfo.filename.compare(mostRecentFile) ) {
-				mostRecentFile = tempFileInfo.filename;
-				fileLoc = j;		// if we found a more recent one, bookmark the index
-			}
-		}
+	if (a.compare(b)<0 )
+	{
+		// delete older currentFile
+		currentFile.deleteFile();
 
 		// open the most recent file
-		File tempFile = dirList.getFile(fileLoc);
-		String fileData = tempFile.loadFileAsString();
+		currentFile = temp;
+		String fileData = currentFile.loadFileAsString();
 
 		// get all the values and set appropriate
 		slider_SineFreq->setValue(getValFromDataString(fileData, T("sat")));
