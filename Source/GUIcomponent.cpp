@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  4 Apr 2011 11:25:04am
+  Creation date:  26 Aug 2011 3:55:00pm
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -47,12 +47,13 @@ GUIcomponent::GUIcomponent ()
       label_SineFreq (0),
       slider_Rate (0),
       label_Rate (0),
-      label_RateTh (0)
+      label_RateTh (0),
+      toggleLog (0)
 {
     addAndMakeVisible (deviceSelector = new AudioDeviceSelectorComponent (deviceManager, 0, 0, 1, 1, false, false, false, true));
 
     addAndMakeVisible (slider_SineAmp = new Slider (String::empty));
-    slider_SineAmp->setTooltip (T("Adjust the volume of the sine wave"));
+    slider_SineAmp->setTooltip (L"Adjust the volume of the sine wave");
     slider_SineAmp->setRange (-42, 12, 1);
     slider_SineAmp->setSliderStyle (Slider::LinearVertical);
     slider_SineAmp->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -62,21 +63,21 @@ GUIcomponent::GUIcomponent ()
     slider_SineAmp->addListener (this);
     slider_SineAmp->setSkewFactor (2);
 
-    addAndMakeVisible (label_SineAmp = new Label (T("Amplitude Label"),
-                                                  T("Amplitude")));
+    addAndMakeVisible (label_SineAmp = new Label (L"Amplitude Label",
+                                                  L"Amplitude"));
     label_SineAmp->setFont (Font (15.7000f, Font::plain));
     label_SineAmp->setJustificationType (Justification::centredLeft);
     label_SineAmp->setEditable (false, false, false);
     label_SineAmp->setColour (TextEditor::textColourId, Colours::black);
     label_SineAmp->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
-    addAndMakeVisible (web_anesthesiology = new HyperlinkButton (T("\xa9 UHealth Miller School of Medicine Dept Anesthesiology"),
-                                                                 URL (T("http://anesthesiology.med.miami.edu/"))));
-    web_anesthesiology->setTooltip (T("http://anesthesiology.med.miami.edu/"));
-    web_anesthesiology->setButtonText (T("\xa9 UHealth Miller School of Medicine Dept Anesthesiology"));
+    addAndMakeVisible (web_anesthesiology = new HyperlinkButton (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology",
+                                                                 URL (L"http://anesthesiology.med.miami.edu/")));
+    web_anesthesiology->setTooltip (L"http://anesthesiology.med.miami.edu/");
+    web_anesthesiology->setButtonText (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology");
 
     addAndMakeVisible (slider_SineFreq = new Slider (String::empty));
-    slider_SineFreq->setTooltip (T("% O2 Saturation"));
+    slider_SineFreq->setTooltip (L"% O2 Saturation");
     slider_SineFreq->setRange (0, 100, 1);
     slider_SineFreq->setSliderStyle (Slider::LinearVertical);
     slider_SineFreq->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -87,8 +88,8 @@ GUIcomponent::GUIcomponent ()
     slider_SineFreq->addListener (this);
     slider_SineFreq->setSkewFactor (2);
 
-    addAndMakeVisible (label_SineFreq = new Label (T("Frequency Label"),
-                                                   T("Saturation")));
+    addAndMakeVisible (label_SineFreq = new Label (L"Frequency Label",
+                                                   L"Saturation"));
     label_SineFreq->setFont (Font (15.0000f, Font::plain));
     label_SineFreq->setJustificationType (Justification::centredLeft);
     label_SineFreq->setEditable (false, false, false);
@@ -96,7 +97,7 @@ GUIcomponent::GUIcomponent ()
     label_SineFreq->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (slider_Rate = new Slider (String::empty));
-    slider_Rate->setTooltip (T("Beats per minute"));
+    slider_Rate->setTooltip (L"Beats per minute");
     slider_Rate->setRange (30, 240, 1);
     slider_Rate->setSliderStyle (Slider::LinearVertical);
     slider_Rate->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -106,8 +107,8 @@ GUIcomponent::GUIcomponent ()
     slider_Rate->setColour (Slider::textBoxHighlightColourId, Colour (0x40757575));
     slider_Rate->addListener (this);
 
-    addAndMakeVisible (label_Rate = new Label (T("Rate Label"),
-                                               T("Heart Rate")));
+    addAndMakeVisible (label_Rate = new Label (L"Rate Label",
+                                               L"Heart Rate"));
     label_Rate->setFont (Font (15.0000f, Font::plain));
     label_Rate->setJustificationType (Justification::centredLeft);
     label_Rate->setEditable (false, false, false);
@@ -115,12 +116,16 @@ GUIcomponent::GUIcomponent ()
     label_Rate->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (label_RateTh = new Label (String::empty,
-                                                 T("HR threshold")));
+                                                 L"HR threshold"));
     label_RateTh->setFont (Font (15.0000f, Font::plain));
     label_RateTh->setJustificationType (Justification::centredLeft);
     label_RateTh->setEditable (false, false, false);
     label_RateTh->setColour (TextEditor::textColourId, Colours::black);
     label_RateTh->setColour (TextEditor::backgroundColourId, Colour (0x0));
+
+    addAndMakeVisible (toggleLog = new ToggleButton (L"Toggle Log"));
+    toggleLog->setButtonText (L"Log");
+    toggleLog->addListener (this);
 
 
     //[UserPreSize]
@@ -132,6 +137,7 @@ GUIcomponent::GUIcomponent ()
     //[/UserPreSize]
 
     setSize (800, 1800);
+
 
     //[Constructor] You can add your own custom stuff here..
 	deviceManager.initialise (0, 1, 0, true, String::empty, 0);
@@ -181,6 +187,8 @@ GUIcomponent::~GUIcomponent()
     deleteAndZero (slider_Rate);
     deleteAndZero (label_Rate);
     deleteAndZero (label_RateTh);
+    deleteAndZero (toggleLog);
+
 
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
@@ -201,10 +209,10 @@ void GUIcomponent::paint (Graphics& g)
     g.drawRect (8, 4, 776, 180, 3);
 
     g.setColour (Colour (0xffe4e4e4));
-    g.fillRect (0, 192, 800, 1005);
+    g.fillRect (0, 192, 800, 1600);
 
     g.setColour (Colour (0xffcacaca));
-    g.drawRect (0, 192, 800, 1005, 3);
+    g.drawRect (0, 192, 800, 1600, 3);
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -221,6 +229,7 @@ void GUIcomponent::resized()
     slider_Rate->setBounds ((27) + 165, 32, 72, 136);
     label_Rate->setBounds (((27) + 165) + 42 - ((83) / 2), (32) + -24, 83, 31);
     label_RateTh->setBounds (24 - ((80) / 2), -24, 80, 31);
+    toggleLog->setBounds (((27) + 165) + 136, 128, 47, 24);
     //[UserResized] Add your own custom resize handling here..
 
 	for (int i=0; i<comArray.size(); i++)
@@ -265,6 +274,21 @@ void GUIcomponent::sliderValueChanged (Slider* sliderThatWasMoved)
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
+}
+
+void GUIcomponent::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == toggleLog)
+    {
+        //[UserButtonCode_toggleLog] -- add your button handler code here..
+        //[/UserButtonCode_toggleLog]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
 }
 
 void GUIcomponent::mouseDown (const MouseEvent& e)
@@ -438,7 +462,8 @@ void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 	if (a.compare(b)<0 )
 	{
 		// delete older currentFile
-		currentFile.deleteFile();
+		if (!toggleLog->getToggleState())
+			currentFile.deleteFile();
 
 		// open the most recent file
 		currentFile = temp;
@@ -449,7 +474,7 @@ void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 		slider_Rate->setValue(getValFromDataString(fileData, T("hr")));
 
 		for (int i=0; i<comArray.size(); i++) {
-			int id = comArray[i]->getVitalID(); 
+			int id = comArray[i]->getVitalID();
 			switch (id) {
 			case HR:	// heart rate
 				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("hr")));
@@ -590,7 +615,7 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ffffffff">
     <RECT pos="8 4 776 180" fill="solid: ff888888" hasStroke="1" stroke="3.29999995, mitered, butt"
           strokeColour="solid: ff4a4a4a"/>
-    <RECT pos="0 192 800 1005" fill="solid: ffe4e4e4" hasStroke="1" stroke="3.29999995, mitered, butt"
+    <RECT pos="0 192 800 1600" fill="solid: ffe4e4e4" hasStroke="1" stroke="3.29999995, mitered, butt"
           strokeColour="solid: ffcacaca"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="" id="3c824ba4c7549c13" memberName="deviceSelector" virtualName=""
@@ -641,6 +666,10 @@ BEGIN_JUCER_METADATA
          labelText="HR threshold" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
+  <TOGGLEBUTTON name="Toggle Log" id="c3e95e7b6a724c01" memberName="toggleLog"
+                virtualName="" explicitFocusOrder="0" pos="136 128 47 24" posRelativeX="200f14d087a1fc8e"
+                buttonText="Log" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

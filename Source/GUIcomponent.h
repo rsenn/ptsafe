@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  4 Apr 2011 11:25:04am
+  Creation date:  26 Aug 2011 3:55:00pm
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -19,8 +19,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_D86DABE1__
-#define __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_D86DABE1__
+#ifndef __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
+#define __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
 
 //[Headers]     -- You can add your own extra header files here --
 
@@ -89,7 +89,8 @@ enum vitalTypes {DEFAULT_VITAL, HR, SPO2, RR, SYSBP, DIABP, MNBP, TEMP, ST, /*IR
 class GUIcomponent  : public Component,
                       public ChangeListener,
                       public MultiTimer,
-                      public SliderListener
+                      public SliderListener,
+                      public ButtonListener
 {
 public:
     //==============================================================================
@@ -114,7 +115,9 @@ public:
     void paint (Graphics& g);
     void resized();
     void sliderValueChanged (Slider* sliderThatWasMoved);
+    void buttonClicked (Button* buttonThatWasClicked);
     void mouseDown (const MouseEvent& e);
+
 
 
     //==============================================================================
@@ -154,6 +157,8 @@ private:
     Slider* slider_Rate;
     Label* label_Rate;
     Label* label_RateTh;
+    ToggleButton* toggleLog;
+
 
     //==============================================================================
     // (prevent copy constructor and operator= being generated..)
@@ -162,4 +167,4 @@ private:
 };
 
 
-#endif   // __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_D86DABE1__
+#endif   // __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
