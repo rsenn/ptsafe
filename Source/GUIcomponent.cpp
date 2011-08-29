@@ -299,24 +299,56 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 		m.addItem(1, "Add new monitor");
 		m.addItem(2, "Save Settings");
 		m.addItem(3, "Load Settings");
+		m.addItem(4, "Re-run case");
+		m.addItem(5, "Live monitoring");
 
 		const int result = m.show();
 
 		switch (result) {
-		case 1:
+		case 1: 
+			{// Add new monitor
 			// add a pointer to the new component
 			comArray.add(new AudioParameter(comArray.size(), sineAudioSource, this));
 			// make it visible
 			addAndMakeVisible (comArray.getLast());
 			resized();
+			}
 			break;
-		case 2:
+		case 2: 
+			{// Save settings
 			saveSettings();
+			}
 			break;
-		case 3:
+		case 3: 
+			{// Load settings
 			loadSettings();
 			resized();
 			startTimer(loadTimer, 50);
+			}
+			break;
+		case 4: 
+			{// Re-run case
+			// stop the live monitor
+			stopTimer(dirTimer);
+
+			// ask the user to select a starting-off file
+			WildcardFileFilter wildcardFilter ("*.csv", String::empty, "PT-SAFE log files");
+			FileBrowserComponent browser (FileBrowserComponent::canSelectFiles|FileBrowserComponent::openMode, 
+										File(T("C:\\Program Files\\PTSAFE\\Data")), &wildcardFilter, nullptr);
+			FileChooserDialogBox dialogBox("Open a PT-SAFE log file", "Select a starting file...", browser, 
+											false, Colours::lightgrey);
+			if (dialogBox.show())
+			{
+				File selectedFile = browser.getSelectedFile(0);
+
+			}
+				
+			}
+
+			break;
+
+		case 5: // Live monitoring
+			startTimer(dirTimer, 100);
 			break;
 		}
 	}
