@@ -143,7 +143,10 @@ void actionPerformed (GUIEvent e)
 void fileWrite() {
   // output file
   
-  output = createWriter("C:/Documents and Settings/cbennett4/My Documents/PTSAFE/Data/" + time.getLongName() + ".csv");
+  Date d = new Date();
+  long current = d.getTime()/1000;
+    
+  output = createWriter("C:/Documents and Settings/cbennett4/My Documents/PTSAFE/Data/" + current + ".csv");
   
   for (int i = 0; i<params.size(); i++) {
     DatexParam dp = (DatexParam) params.get(i);

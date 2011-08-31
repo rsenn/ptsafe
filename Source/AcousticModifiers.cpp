@@ -130,7 +130,7 @@ public:
 
 		case AUDIOFILE:
 			// "plays" silence before user drops new alarm on
-			loadSoundFile(File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav"));
+			loadSoundFile(File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("PTSAFE/Sounds/Silence.wav"));
 
 			break;
 
@@ -180,8 +180,9 @@ public:
 							alarmToPlay = highAlarm;
 						else if (val > 0.33)
 							alarmToPlay = lowAlarm;
-						else
-							alarmToPlay = File("C:\\Program Files\\PTSAFE\\Sounds\\Silence.wav");
+						else {
+							alarmToPlay = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("PTSAFE/Sounds/Silence.wav");
+						}
 					break;
 
 				case AM:

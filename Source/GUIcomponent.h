@@ -109,6 +109,7 @@ public:
 	void loadSettings2(void);
 	File getMostRecentFile(void);
 	SineAudioSource *sineAudioSource;
+	void grabVitalsFromDisk(File);
 
     //[/UserMethods]
 
@@ -134,9 +135,10 @@ private:
 	DirectoryContentsList dirList;
 	int numFiles;
 	File currentFile;
+	File nextFile;
 
 	// timer types
-	enum timerTypes {dirTimer, loadTimer};
+	enum timerTypes {dirTimer, loadTimer, rerunTimer};
 
 	// dynamic array of audio parameter component objects
 	OwnedArray<AudioParameter> comArray;

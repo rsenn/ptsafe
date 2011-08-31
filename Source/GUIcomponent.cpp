@@ -155,7 +155,7 @@ GUIcomponent::GUIcomponent ()
 
 	// setup the directory watcher
 	numFiles = 0;
-	File folder = T("C:\\Program Files\\PTSAFE\\Data\\");
+	File folder = File::getSpecialLocation (File::userDocumentsDirectory).getChildFile("PTSAFE/Data/");
 	dirList.setDirectory(folder, false, true);	// don't watch folders, do watch files
 	dirList.addChangeListener(this);	// register our changeListener callback
 	thread.startThread (0);		// priority: lo 0..[3]....10 hi
@@ -176,6 +176,7 @@ GUIcomponent::~GUIcomponent()
 	delete settingsFile;
 	stopTimer(dirTimer);
 	stopTimer(loadTimer);
+	stopTimer(rerunTimer);
     //[/Destructor_pre]
 
     deleteAndZero (deviceSelector);
@@ -333,14 +334,17 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 
 			// ask the user to select a starting-off file
 			WildcardFileFilter wildcardFilter ("*.csv", String::empty, "PT-SAFE log files");
+			File lookIn = File::getSpecialLocation (File::userDocumentsDirectory).getChildFile("PTSAFE/Data/");
 			FileBrowserComponent browser (FileBrowserComponent::canSelectFiles|FileBrowserComponent::openMode, 
-										File(T("C:\\Program Files\\PTSAFE\\Data")), &wildcardFilter, nullptr);
+										  lookIn, &wildcardFilter, nullptr);
 			FileChooserDialogBox dialogBox("Open a PT-SAFE log file", "Select a starting file...", browser, 
 											false, Colours::lightgrey);
 			if (dialogBox.show())
 			{
-				File selectedFile = browser.getSelectedFile(0);
-
+				currentFile = browser.getSelectedFile(0);
+				grabVitalsFromDisk(currentFile);
+				nextFile = currentFile;
+				startTimer(rerunTimer, 1000);
 			}
 				
 			}
@@ -348,6 +352,9 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 			break;
 
 		case 5: // Live monitoring
+			currentFile = getMostRecentFile();
+			grabVitalsFromDisk(currentFile);
+			stopTimer(rerunTimer);
 			startTimer(dirTimer, 100);
 			break;
 		}
@@ -458,10 +465,24 @@ void GUIcomponent::timerCallback(int timerID)
 	if (timerID==dirTimer) {
 		dirList.refresh();
 	}
+
 	if (timerID==loadTimer) {
 		loadSettings2();
 		stopTimer(loadTimer);
 	}
+
+	if (timerID==rerunTimer) {
+		File currentDir = currentFile.getParentDirectory();
+		String fileName = nextFile.getFileNameWithoutExtension();
+		int64 fileNumber = fileName.getLargeIntValue();
+
+		String nextFileName = String(fileNumber+1);
+		nextFileName+=T(".csv");
+		nextFile = currentDir.getChildFile(nextFileName);
+		if (nextFile.exists())
+			grabVitalsFromDisk(nextFile);
+	}
+
 }
 
 File GUIcomponent::getMostRecentFile(void)
@@ -497,8 +518,15 @@ void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 		if (!toggleLog->getToggleState())
 			currentFile.deleteFile();
 
+		grabVitalsFromDisk(temp);
+	}
+}
+
+
+void GUIcomponent::grabVitalsFromDisk(File newFile)
+{
 		// open the most recent file
-		currentFile = temp;
+		currentFile = newFile;
 		String fileData = currentFile.loadFileAsString();
 
 		// get all the values and set appropriate
@@ -609,7 +637,6 @@ void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 				break;
 			}
 		}
-	}
 }
 
 
