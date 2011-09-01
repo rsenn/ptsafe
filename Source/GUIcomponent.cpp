@@ -487,22 +487,15 @@ void GUIcomponent::timerCallback(int timerID)
 
 File GUIcomponent::getMostRecentFile(void)
 {
-	numFiles = dirList.getNumFiles();
+	DirectoryIterator iter (dirList.getDirectory(), false, "*.csv");
+	File mostRecentFile;
 
-	DirectoryContentsList::FileInfo tempFileInfo;
-	String mostRecentFile(String::empty);
-	int fileLoc;
-
-	// look at all the files, and find the most recent one
-	for (int j = 0; j<numFiles; j++) {
-		dirList.getFileInfo(j, tempFileInfo);
-		// check and see if tFI comes later than mRF alphabetically
-		if( tempFileInfo.filename.compare(mostRecentFile) ) {
-			mostRecentFile = tempFileInfo.filename;
-			fileLoc = j;		// if we found a more recent one, bookmark the index
-		}
+	while (iter.next()) {
+		if (iter.getFile().getFileNameWithoutExtension().compare(mostRecentFile.getFileName()) )
+			mostRecentFile = iter.getFile();
 	}
-	return dirList.getFile(fileLoc);
+	
+	return mostRecentFile;
 }
 void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 	// when the directory is updated
