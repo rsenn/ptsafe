@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  26 Aug 2011 3:55:00pm
+  Creation date:  4 Apr 2011 11:25:04am
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -47,13 +47,12 @@ GUIcomponent::GUIcomponent ()
       label_SineFreq (0),
       slider_Rate (0),
       label_Rate (0),
-      label_RateTh (0),
-      toggleLog (0)
+      label_RateTh (0)
 {
     addAndMakeVisible (deviceSelector = new AudioDeviceSelectorComponent (deviceManager, 0, 0, 1, 1, false, false, false, true));
 
     addAndMakeVisible (slider_SineAmp = new Slider (String::empty));
-    slider_SineAmp->setTooltip (L"Adjust the volume of the sine wave");
+    slider_SineAmp->setTooltip (T("Adjust the volume of the sine wave"));
     slider_SineAmp->setRange (-42, 12, 1);
     slider_SineAmp->setSliderStyle (Slider::LinearVertical);
     slider_SineAmp->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -63,21 +62,21 @@ GUIcomponent::GUIcomponent ()
     slider_SineAmp->addListener (this);
     slider_SineAmp->setSkewFactor (2);
 
-    addAndMakeVisible (label_SineAmp = new Label (L"Amplitude Label",
-                                                  L"Amplitude"));
+    addAndMakeVisible (label_SineAmp = new Label (T("Amplitude Label"),
+                                                  T("Amplitude")));
     label_SineAmp->setFont (Font (15.7000f, Font::plain));
     label_SineAmp->setJustificationType (Justification::centredLeft);
     label_SineAmp->setEditable (false, false, false);
     label_SineAmp->setColour (TextEditor::textColourId, Colours::black);
     label_SineAmp->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
-    addAndMakeVisible (web_anesthesiology = new HyperlinkButton (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology",
-                                                                 URL (L"http://anesthesiology.med.miami.edu/")));
-    web_anesthesiology->setTooltip (L"http://anesthesiology.med.miami.edu/");
-    web_anesthesiology->setButtonText (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology");
+    addAndMakeVisible (web_anesthesiology = new HyperlinkButton (T("\xa9 UHealth Miller School of Medicine Dept Anesthesiology"),
+                                                                 URL (T("http://anesthesiology.med.miami.edu/"))));
+    web_anesthesiology->setTooltip (T("http://anesthesiology.med.miami.edu/"));
+    web_anesthesiology->setButtonText (T("\xa9 UHealth Miller School of Medicine Dept Anesthesiology"));
 
     addAndMakeVisible (slider_SineFreq = new Slider (String::empty));
-    slider_SineFreq->setTooltip (L"% O2 Saturation");
+    slider_SineFreq->setTooltip (T("% O2 Saturation"));
     slider_SineFreq->setRange (0, 100, 1);
     slider_SineFreq->setSliderStyle (Slider::LinearVertical);
     slider_SineFreq->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -88,8 +87,8 @@ GUIcomponent::GUIcomponent ()
     slider_SineFreq->addListener (this);
     slider_SineFreq->setSkewFactor (2);
 
-    addAndMakeVisible (label_SineFreq = new Label (L"Frequency Label",
-                                                   L"Saturation"));
+    addAndMakeVisible (label_SineFreq = new Label (T("Frequency Label"),
+                                                   T("Saturation")));
     label_SineFreq->setFont (Font (15.0000f, Font::plain));
     label_SineFreq->setJustificationType (Justification::centredLeft);
     label_SineFreq->setEditable (false, false, false);
@@ -97,7 +96,7 @@ GUIcomponent::GUIcomponent ()
     label_SineFreq->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (slider_Rate = new Slider (String::empty));
-    slider_Rate->setTooltip (L"Beats per minute");
+    slider_Rate->setTooltip (T("Beats per minute"));
     slider_Rate->setRange (30, 240, 1);
     slider_Rate->setSliderStyle (Slider::LinearVertical);
     slider_Rate->setTextBoxStyle (Slider::TextBoxAbove, false, 80, 20);
@@ -107,8 +106,8 @@ GUIcomponent::GUIcomponent ()
     slider_Rate->setColour (Slider::textBoxHighlightColourId, Colour (0x40757575));
     slider_Rate->addListener (this);
 
-    addAndMakeVisible (label_Rate = new Label (L"Rate Label",
-                                               L"Heart Rate"));
+    addAndMakeVisible (label_Rate = new Label (T("Rate Label"),
+                                               T("Heart Rate")));
     label_Rate->setFont (Font (15.0000f, Font::plain));
     label_Rate->setJustificationType (Justification::centredLeft);
     label_Rate->setEditable (false, false, false);
@@ -116,16 +115,12 @@ GUIcomponent::GUIcomponent ()
     label_Rate->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (label_RateTh = new Label (String::empty,
-                                                 L"HR threshold"));
+                                                 T("HR threshold")));
     label_RateTh->setFont (Font (15.0000f, Font::plain));
     label_RateTh->setJustificationType (Justification::centredLeft);
     label_RateTh->setEditable (false, false, false);
     label_RateTh->setColour (TextEditor::textColourId, Colours::black);
     label_RateTh->setColour (TextEditor::backgroundColourId, Colour (0x0));
-
-    addAndMakeVisible (toggleLog = new ToggleButton (L"Toggle Log"));
-    toggleLog->setButtonText (L"Log");
-    toggleLog->addListener (this);
 
 
     //[UserPreSize]
@@ -137,7 +132,6 @@ GUIcomponent::GUIcomponent ()
     //[/UserPreSize]
 
     setSize (800, 1800);
-
 
     //[Constructor] You can add your own custom stuff here..
 	deviceManager.initialise (0, 1, 0, true, String::empty, 0);
@@ -155,11 +149,12 @@ GUIcomponent::GUIcomponent ()
 
 	// setup the directory watcher
 	numFiles = 0;
-	File folder = File::getSpecialLocation (File::userDocumentsDirectory).getChildFile("PTSAFE/Data/");
+	//File folder = T("C:\\Program Files\\PTSAFE\\Data\\");
+    File folder( File::getSpecialLocation(File::currentApplicationFile) );
+    
 	dirList.setDirectory(folder, false, true);	// don't watch folders, do watch files
 	dirList.addChangeListener(this);	// register our changeListener callback
 	thread.startThread (0);		// priority: lo 0..[3]....10 hi
-	currentFile = getMostRecentFile();
 	startTimer(dirTimer, 100);
 
     //[/Constructor]
@@ -176,7 +171,6 @@ GUIcomponent::~GUIcomponent()
 	delete settingsFile;
 	stopTimer(dirTimer);
 	stopTimer(loadTimer);
-	stopTimer(rerunTimer);
     //[/Destructor_pre]
 
     deleteAndZero (deviceSelector);
@@ -188,8 +182,6 @@ GUIcomponent::~GUIcomponent()
     deleteAndZero (slider_Rate);
     deleteAndZero (label_Rate);
     deleteAndZero (label_RateTh);
-    deleteAndZero (toggleLog);
-
 
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
@@ -210,10 +202,10 @@ void GUIcomponent::paint (Graphics& g)
     g.drawRect (8, 4, 776, 180, 3);
 
     g.setColour (Colour (0xffe4e4e4));
-    g.fillRect (0, 192, 800, 1600);
+    g.fillRect (0, 192, 800, 1005);
 
     g.setColour (Colour (0xffcacaca));
-    g.drawRect (0, 192, 800, 1600, 3);
+    g.drawRect (0, 192, 800, 1005, 3);
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -230,7 +222,6 @@ void GUIcomponent::resized()
     slider_Rate->setBounds ((27) + 165, 32, 72, 136);
     label_Rate->setBounds (((27) + 165) + 42 - ((83) / 2), (32) + -24, 83, 31);
     label_RateTh->setBounds (24 - ((80) / 2), -24, 80, 31);
-    toggleLog->setBounds (((27) + 165) + 136, 128, 47, 24);
     //[UserResized] Add your own custom resize handling here..
 
 	for (int i=0; i<comArray.size(); i++)
@@ -277,21 +268,6 @@ void GUIcomponent::sliderValueChanged (Slider* sliderThatWasMoved)
     //[/UsersliderValueChanged_Post]
 }
 
-void GUIcomponent::buttonClicked (Button* buttonThatWasClicked)
-{
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
-
-    if (buttonThatWasClicked == toggleLog)
-    {
-        //[UserButtonCode_toggleLog] -- add your button handler code here..
-        //[/UserButtonCode_toggleLog]
-    }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
-}
-
 void GUIcomponent::mouseDown (const MouseEvent& e)
 {
     //[UserCode_mouseDown] -- Add your code here...
@@ -300,62 +276,24 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 		m.addItem(1, "Add new monitor");
 		m.addItem(2, "Save Settings");
 		m.addItem(3, "Load Settings");
-		m.addItem(4, "Re-run case");
-		m.addItem(5, "Live monitoring");
 
 		const int result = m.show();
 
 		switch (result) {
-		case 1: 
-			{// Add new monitor
+		case 1:
 			// add a pointer to the new component
 			comArray.add(new AudioParameter(comArray.size(), sineAudioSource, this));
 			// make it visible
 			addAndMakeVisible (comArray.getLast());
 			resized();
-			}
 			break;
-		case 2: 
-			{// Save settings
+		case 2:
 			saveSettings();
-			}
 			break;
-		case 3: 
-			{// Load settings
+		case 3:
 			loadSettings();
 			resized();
 			startTimer(loadTimer, 50);
-			}
-			break;
-		case 4: 
-			{// Re-run case
-			// stop the live monitor
-			stopTimer(dirTimer);
-
-			// ask the user to select a starting-off file
-			WildcardFileFilter wildcardFilter ("*.csv", String::empty, "PT-SAFE log files");
-			File lookIn = File::getSpecialLocation (File::userDocumentsDirectory).getChildFile("PTSAFE/Data/");
-			FileBrowserComponent browser (FileBrowserComponent::canSelectFiles|FileBrowserComponent::openMode, 
-										  lookIn, &wildcardFilter, nullptr);
-			FileChooserDialogBox dialogBox("Open a PT-SAFE log file", "Select a starting file...", browser, 
-											false, Colours::lightgrey);
-			if (dialogBox.show())
-			{
-				currentFile = browser.getSelectedFile(0);
-				grabVitalsFromDisk(currentFile);
-				nextFile = currentFile;
-				startTimer(rerunTimer, 1000);
-			}
-				
-			}
-
-			break;
-
-		case 5: // Live monitoring
-			currentFile = getMostRecentFile();
-			grabVitalsFromDisk(currentFile);
-			stopTimer(rerunTimer);
-			startTimer(dirTimer, 100);
 			break;
 		}
 	}
@@ -462,72 +400,45 @@ void GUIcomponent::removeObject(int obj) {
 
 void GUIcomponent::timerCallback(int timerID)
 {
-	if (timerID==dirTimer) {
+	if (timerID==dirTimer)
 		dirList.refresh();
-	}
-
 	if (timerID==loadTimer) {
 		loadSettings2();
 		stopTimer(loadTimer);
 	}
-
-	if (timerID==rerunTimer) {
-		File currentDir = currentFile.getParentDirectory();
-		String fileName = nextFile.getFileNameWithoutExtension();
-		int64 fileNumber = fileName.getLargeIntValue();
-
-		String nextFileName = String(fileNumber+1);
-		nextFileName+=T(".csv");
-		nextFile = currentDir.getChildFile(nextFileName);
-		if (nextFile.exists())
-			grabVitalsFromDisk(nextFile);
-	}
-
 }
 
-File GUIcomponent::getMostRecentFile(void)
-{
-	DirectoryIterator iter (dirList.getDirectory(), false, "*.csv");
-	File mostRecentFile;
-
-	while (iter.next()) {
-		if (iter.getFile().getFileNameWithoutExtension().compare(mostRecentFile.getFileName()) )
-			mostRecentFile = iter.getFile();
-	}
-	
-	return mostRecentFile;
-}
 void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
 	// when the directory is updated
 {
-	File temp = getMostRecentFile();
+	if (dirList.getNumFiles() > numFiles) {
+		// get the new numFiles
+		numFiles = dirList.getNumFiles();
 
-	String a = currentFile.getFileNameWithoutExtension();
-	String b = temp.getFileNameWithoutExtension();
+		DirectoryContentsList::FileInfo tempFileInfo;
+		String mostRecentFile(String::empty);
+		int fileLoc;
 
-	if (a.compare(b)<0 )
-	{
-		// delete older currentFile
-		if (!toggleLog->getToggleState())
-			currentFile.deleteFile();
+		// look at all the files, and find the most recent one
+		for (int j = 0; j<numFiles; j++) {
+			dirList.getFileInfo(j, tempFileInfo);
+			// check and see if tFI comes later than mRF alphabetically
+			if( tempFileInfo.filename.compare(mostRecentFile) ) {
+				mostRecentFile = tempFileInfo.filename;
+				fileLoc = j;		// if we found a more recent one, bookmark the index
+			}
+		}
 
-		grabVitalsFromDisk(temp);
-	}
-}
-
-
-void GUIcomponent::grabVitalsFromDisk(File newFile)
-{
 		// open the most recent file
-		currentFile = newFile;
-		String fileData = currentFile.loadFileAsString();
+		File tempFile = dirList.getFile(fileLoc);
+		String fileData = tempFile.loadFileAsString();
 
 		// get all the values and set appropriate
 		slider_SineFreq->setValue(getValFromDataString(fileData, T("sat")));
 		slider_Rate->setValue(getValFromDataString(fileData, T("hr")));
 
 		for (int i=0; i<comArray.size(); i++) {
-			int id = comArray[i]->getVitalID();
+			int id = comArray[i]->getVitalID(); 
 			switch (id) {
 			case HR:	// heart rate
 				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("hr")));
@@ -630,6 +541,7 @@ void GUIcomponent::grabVitalsFromDisk(File newFile)
 				break;
 			}
 		}
+	}
 }
 
 
@@ -667,7 +579,7 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ffffffff">
     <RECT pos="8 4 776 180" fill="solid: ff888888" hasStroke="1" stroke="3.29999995, mitered, butt"
           strokeColour="solid: ff4a4a4a"/>
-    <RECT pos="0 192 800 1600" fill="solid: ffe4e4e4" hasStroke="1" stroke="3.29999995, mitered, butt"
+    <RECT pos="0 192 800 1005" fill="solid: ffe4e4e4" hasStroke="1" stroke="3.29999995, mitered, butt"
           strokeColour="solid: ffcacaca"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="" id="3c824ba4c7549c13" memberName="deviceSelector" virtualName=""
@@ -718,10 +630,6 @@ BEGIN_JUCER_METADATA
          labelText="HR threshold" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          bold="0" italic="0" justification="33"/>
-  <TOGGLEBUTTON name="Toggle Log" id="c3e95e7b6a724c01" memberName="toggleLog"
-                virtualName="" explicitFocusOrder="0" pos="136 128 47 24" posRelativeX="200f14d087a1fc8e"
-                buttonText="Log" connectedEdges="0" needsCallback="1" radioGroupId="0"
-                state="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
