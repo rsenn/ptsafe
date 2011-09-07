@@ -1,48 +1,21 @@
 /*
- * MATLAB Compiler: 4.11 (R2009b)
- * Date: Wed Jul 27 16:21:26 2011
- * Arguments: "-B" "macro_default" "-B" "csharedlib:foolib" "-W" "lib:foolib"
- * "-T" "link:lib" "foo.m" "-C" 
+ * MATLAB Compiler: 4.15 (R2011a)
+ * Date: Tue Sep  6 07:50:25 2011
+ * Arguments: "-B" "macro_default" "-W" "lib:foolib" "-T" "link:lib" "-d"
+ * "/Users/cuz/Desktop/OygoSVN/Projects/ptsafe/Libraries" "-C" "-w"
+ * "enable:specified_file_mismatch" "-w" "enable:repeated_file" "-w"
+ * "enable:switch_ignored" "-w" "enable:missing_lib_sentinel" "-w"
+ * "enable:demo_license" "-v"
+ * "/Users/cuz/Desktop/OygoSVN/Projects/ptsafe/Libraries/foo.m" 
  */
 
 #include <stdio.h>
 #define EXPORTING_foolib 1
 #include "foolib.h"
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-extern mclComponentData __MCC_foolib_component_data;
-
-#ifdef __cplusplus
-}
-#endif
-
 
 static HMCRINSTANCE _mcr_inst = NULL;
 
 
-#if defined( _MSC_VER) || defined(__BORLANDC__) || defined(__WATCOMC__) || defined(__LCC__)
-#ifdef __LCC__
-#undef EXTERN_C
-#endif
-#include <windows.h>
-
-static char path_to_dll[_MAX_PATH];
-
-BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, void *pv)
-{
-    if (dwReason == DLL_PROCESS_ATTACH)
-    {
-        if (GetModuleFileName(hInstance, path_to_dll, _MAX_PATH) == 0)
-            return FALSE;
-    }
-    else if (dwReason == DLL_PROCESS_DETACH)
-    {
-    }
-    return TRUE;
-}
-#endif
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -87,15 +60,18 @@ bool MW_CALL_CONV foolibInitializeWithHandlers(
     mclOutputHandlerFcn error_handler,
     mclOutputHandlerFcn print_handler)
 {
+    int bResult = 0;
   if (_mcr_inst != NULL)
     return true;
   if (!mclmcrInitialize())
     return false;
-  if (!GetModuleFileName(GetModuleHandle("foolib"), path_to_dll, _MAX_PATH))
-    return false;
-  if (!mclInitializeComponentInstance(&_mcr_inst, &__MCC_foolib_component_data, true, 
-                                      NoObjectType, LibTarget, error_handler, 
-                                      print_handler))
+    bResult = mclInitializeComponentInstanceNonEmbeddedStandalone(  &_mcr_inst,
+                                                                    NULL,
+                                                                    "foolib",
+                                                                    LibTarget,
+                                                                    error_handler, 
+                                                                    print_handler);
+    if (!bResult)
     return false;
   return true;
 }
@@ -123,7 +99,7 @@ LIB_foolib_C_API
 void MW_CALL_CONV foolibPrintStackTrace(void) 
 {
   char** stackTrace;
-  int stackDepth = mclGetStackTrace(_mcr_inst, &stackTrace);
+  int stackDepth = mclGetStackTrace(&stackTrace);
   int i;
   for(i=0; i<stackDepth; i++)
   {

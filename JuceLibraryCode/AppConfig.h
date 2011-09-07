@@ -11,6 +11,8 @@
 
 */
 
+#define JUCE_MAC 1
+
 //#define  JUCE_FORCE_DEBUG
 //#define  JUCE_LOG_ASSERTIONS
 //#define  JUCE_ASIO

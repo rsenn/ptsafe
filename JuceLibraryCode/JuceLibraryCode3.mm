@@ -12,4 +12,9 @@
 */
 
 #include "AppConfig.h"
+
+#if JUCE_MAC
+#include "../../../Common/juce/amalgamation/juce_amalgamated3.cpp"
+#else
 #include "../../juce/amalgamation/juce_amalgamated3.cpp"
+#endif
