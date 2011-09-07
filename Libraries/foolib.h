@@ -1,8 +1,12 @@
 /*
- * MATLAB Compiler: 4.11 (R2009b)
- * Date: Wed Jul 27 16:21:26 2011
- * Arguments: "-B" "macro_default" "-B" "csharedlib:foolib" "-W" "lib:foolib"
- * "-T" "link:lib" "foo.m" "-C" 
+ * MATLAB Compiler: 4.15 (R2011a)
+ * Date: Tue Sep  6 07:50:25 2011
+ * Arguments: "-B" "macro_default" "-W" "lib:foolib" "-T" "link:lib" "-d"
+ * "/Users/cuz/Desktop/OygoSVN/Projects/ptsafe/Libraries" "-C" "-w"
+ * "enable:specified_file_mismatch" "-w" "enable:repeated_file" "-w"
+ * "enable:switch_ignored" "-w" "enable:missing_lib_sentinel" "-w"
+ * "enable:demo_license" "-v"
+ * "/Users/cuz/Desktop/OygoSVN/Projects/ptsafe/Libraries/foo.m" 
  */
 
 #ifndef __foolib_h

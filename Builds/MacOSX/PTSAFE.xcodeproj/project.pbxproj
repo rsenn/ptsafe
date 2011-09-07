@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		015B8F0B7DF78C4C0EC2293E /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631E049925345D02590F301 /* CoreMIDI.framework */; };
+		1121B23EA4483415E3B895A2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0CC9B27CDE57E51A67763E /* WebKit.framework */; };
+		16DD3BDC909D68833E75F207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC9D60CD421BC7877234595 /* QuartzCore.framework */; };
+		3724F24D9B10D623626B5DED /* JuceLibraryCode1.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF381A4CF17C41A27A7636D2 /* JuceLibraryCode1.mm */; };
+		43CA02DE67EB9C3B9C4091F8 /* JuceLibraryCode2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 185EE3481E67B4C54E59B912 /* JuceLibraryCode2.mm */; };
+		4D2AA204BEE7C00ED18F5C24 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401BA249821EBE43C68264D4 /* IOKit.framework */; };
+		5BE722002F623A4BF0FA1AFE /* JuceLibraryCode4.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABAC843F373EAA1C0621C0A1 /* JuceLibraryCode4.mm */; };
+		5F51127F43A66333C625D5F3 /* JuceLibraryCode3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5175BB332A5337F8224D4D51 /* JuceLibraryCode3.mm */; };
+		673DED89763595FF88F20D5A /* DiscRecording.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09F1E93AD3809C45922E7C9 /* DiscRecording.framework */; };
+		6953A3BC9AD4B7D7BFD168AC /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E6879C73EAC617CA04E0C1 /* QuickTime.framework */; };
+		8DAE4C19051E75674CBC03F7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF66A1510C56BA4133D02A58 /* CoreAudio.framework */; };
+		B6D96648E059CFCC28143FDE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F591FC08AF43C15CA1C07F4 /* Cocoa.framework */; };
+		D575CD4A230F12ED98EA9C5E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A91BB1BF99C2F3FA6743EBFE /* OpenGL.framework */; };
+		DEC3604B85EF7FCF5D911B62 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52514E29916318C29D534855 /* QTKit.framework */; };
+		E467AB14140975BD0097D7AA /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB11140975BD0097D7AA /* Main.cpp */; };
+		E467AB15140975BD0097D7AA /* MainAppWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB12140975BD0097D7AA /* MainAppWindow.cpp */; };
+		E467AB1E140978490097D7AA /* AcousticModifiers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB17140978480097D7AA /* AcousticModifiers.cpp */; };
+		E467AB1F140978490097D7AA /* AudioParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB18140978480097D7AA /* AudioParameter.cpp */; };
+		E467AB20140978490097D7AA /* FileLoadSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB1A140978490097D7AA /* FileLoadSave.cpp */; };
+		E467AB21140978490097D7AA /* GUIcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB1B140978490097D7AA /* GUIcomponent.cpp */; };
+		E467AB22140978490097D7AA /* SineAudioSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E467AB1D140978490097D7AA /* SineAudioSource.cpp */; };
+		E4FFFA271416E0BE0075471C /* foolib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFFA261416E0BE0075471C /* foolib.dylib */; };
+		E4FFFA291416F6DD0075471C /* libmwmclmcrrt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FFFA281416F6DD0075471C /* libmwmclmcrrt.dylib */; };
+		F2FD319B83B32AEC409ED04C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAF9EC620267DA09B5AC298 /* Carbon.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04E6879C73EAC617CA04E0C1 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		185EE3481E67B4C54E59B912 /* JuceLibraryCode2.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JuceLibraryCode2.mm; path = ../../JuceLibraryCode/JuceLibraryCode2.mm; sourceTree = SOURCE_ROOT; };
+		2631E049925345D02590F301 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		2FCF3B63B5D76D2A953273D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		401BA249821EBE43C68264D4 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		4DEBDD6074A0232AC5A4CF57 /* PTSAFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PTSAFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F591FC08AF43C15CA1C07F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5175BB332A5337F8224D4D51 /* JuceLibraryCode3.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JuceLibraryCode3.mm; path = ../../JuceLibraryCode/JuceLibraryCode3.mm; sourceTree = SOURCE_ROOT; };
+		52514E29916318C29D534855 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		5EC9D60CD421BC7877234595 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8EAF9EC620267DA09B5AC298 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		A91BB1BF99C2F3FA6743EBFE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		ABAC843F373EAA1C0621C0A1 /* JuceLibraryCode4.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JuceLibraryCode4.mm; path = ../../JuceLibraryCode/JuceLibraryCode4.mm; sourceTree = SOURCE_ROOT; };
+		BAD6C899A5606E941AA6E676 /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		BF0CC9B27CDE57E51A67763E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CF381A4CF17C41A27A7636D2 /* JuceLibraryCode1.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JuceLibraryCode1.mm; path = ../../JuceLibraryCode/JuceLibraryCode1.mm; sourceTree = SOURCE_ROOT; };
+		E09F1E93AD3809C45922E7C9 /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
+		E467AB11140975BD0097D7AA /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = "<group>"; };
+		E467AB12140975BD0097D7AA /* MainAppWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainAppWindow.cpp; path = ../../Source/MainAppWindow.cpp; sourceTree = "<group>"; };
+		E467AB13140975BD0097D7AA /* MainAppWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainAppWindow.h; path = ../../Source/MainAppWindow.h; sourceTree = "<group>"; };
+		E467AB17140978480097D7AA /* AcousticModifiers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AcousticModifiers.cpp; path = ../../Source/AcousticModifiers.cpp; sourceTree = "<group>"; };
+		E467AB18140978480097D7AA /* AudioParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioParameter.cpp; path = ../../Source/AudioParameter.cpp; sourceTree = "<group>"; };
+		E467AB19140978480097D7AA /* AudioParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioParameter.h; path = ../../Source/AudioParameter.h; sourceTree = "<group>"; };
+		E467AB1A140978490097D7AA /* FileLoadSave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileLoadSave.cpp; path = ../../Source/FileLoadSave.cpp; sourceTree = "<group>"; };
+		E467AB1B140978490097D7AA /* GUIcomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GUIcomponent.cpp; path = ../../Source/GUIcomponent.cpp; sourceTree = "<group>"; };
+		E467AB1C140978490097D7AA /* GUIcomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GUIcomponent.h; path = ../../Source/GUIcomponent.h; sourceTree = "<group>"; };
+		E467AB1D140978490097D7AA /* SineAudioSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SineAudioSource.cpp; path = ../../Source/SineAudioSource.cpp; sourceTree = "<group>"; };
+		E4FFFA221416E0AD0075471C /* foolib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = foolib.h; path = ../../Libraries/foolib.h; sourceTree = "<group>"; };
+		E4FFFA261416E0BE0075471C /* foolib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = foolib.dylib; path = ../../Libraries/foolib.dylib; sourceTree = "<group>"; };
+		E4FFFA281416F6DD0075471C /* libmwmclmcrrt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmwmclmcrrt.dylib; path = ../../../../../../../../Applications/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64/libmwmclmcrrt.dylib; sourceTree = "<group>"; };
+		F35AF1FDA3A64933A69A7216 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = SOURCE_ROOT; };
+		FF66A1510C56BA4133D02A58 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43727DCCC67F60CD76F6077E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6D96648E059CFCC28143FDE /* Cocoa.framework in Frameworks */,
+				F2FD319B83B32AEC409ED04C /* Carbon.framework in Frameworks */,
+				4D2AA204BEE7C00ED18F5C24 /* IOKit.framework in Frameworks */,
+				8DAE4C19051E75674CBC03F7 /* CoreAudio.framework in Frameworks */,
+				015B8F0B7DF78C4C0EC2293E /* CoreMIDI.framework in Frameworks */,
+				1121B23EA4483415E3B895A2 /* WebKit.framework in Frameworks */,
+				673DED89763595FF88F20D5A /* DiscRecording.framework in Frameworks */,
+				D575CD4A230F12ED98EA9C5E /* OpenGL.framework in Frameworks */,
+				16DD3BDC909D68833E75F207 /* QuartzCore.framework in Frameworks */,
+				DEC3604B85EF7FCF5D911B62 /* QTKit.framework in Frameworks */,
+				6953A3BC9AD4B7D7BFD168AC /* QuickTime.framework in Frameworks */,
+				E4FFFA271416E0BE0075471C /* foolib.dylib in Frameworks */,
+				E4FFFA291416F6DD0075471C /* libmwmclmcrrt.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		25CF2523B01397BC8023EC58 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E4FFFA281416F6DD0075471C /* libmwmclmcrrt.dylib */,
+				E4FFFA261416E0BE0075471C /* foolib.dylib */,
+				2FCF3B63B5D76D2A953273D5 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		386DECF8978C39A4F07097B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F591FC08AF43C15CA1C07F4 /* Cocoa.framework */,
+				8EAF9EC620267DA09B5AC298 /* Carbon.framework */,
+				401BA249821EBE43C68264D4 /* IOKit.framework */,
+				FF66A1510C56BA4133D02A58 /* CoreAudio.framework */,
+				2631E049925345D02590F301 /* CoreMIDI.framework */,
+				BF0CC9B27CDE57E51A67763E /* WebKit.framework */,
+				E09F1E93AD3809C45922E7C9 /* DiscRecording.framework */,
+				A91BB1BF99C2F3FA6743EBFE /* OpenGL.framework */,
+				5EC9D60CD421BC7877234595 /* QuartzCore.framework */,
+				52514E29916318C29D534855 /* QTKit.framework */,
+				04E6879C73EAC617CA04E0C1 /* QuickTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4373B974F5BCA4EBEA75EB15 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4DEBDD6074A0232AC5A4CF57 /* PTSAFE.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6151B54F6CA7627ECF1FE736 /* Juce Library Code */ = {
+			isa = PBXGroup;
+			children = (
+				F35AF1FDA3A64933A69A7216 /* AppConfig.h */,
+				BAD6C899A5606E941AA6E676 /* JuceHeader.h */,
+				CF381A4CF17C41A27A7636D2 /* JuceLibraryCode1.mm */,
+				185EE3481E67B4C54E59B912 /* JuceLibraryCode2.mm */,
+				5175BB332A5337F8224D4D51 /* JuceLibraryCode3.mm */,
+				ABAC843F373EAA1C0621C0A1 /* JuceLibraryCode4.mm */,
+			);
+			name = "Juce Library Code";
+			sourceTree = "<group>";
+		};
+		997EDC50B3CEAAB31279D8A3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E4FFFA221416E0AD0075471C /* foolib.h */,
+				E467AB11140975BD0097D7AA /* Main.cpp */,
+				E467AB12140975BD0097D7AA /* MainAppWindow.cpp */,
+				E467AB13140975BD0097D7AA /* MainAppWindow.h */,
+				E467AB17140978480097D7AA /* AcousticModifiers.cpp */,
+				E467AB18140978480097D7AA /* AudioParameter.cpp */,
+				E467AB19140978480097D7AA /* AudioParameter.h */,
+				E467AB1A140978490097D7AA /* FileLoadSave.cpp */,
+				E467AB1B140978490097D7AA /* GUIcomponent.cpp */,
+				E467AB1C140978490097D7AA /* GUIcomponent.h */,
+				E467AB1D140978490097D7AA /* SineAudioSource.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		E3F0C3A22A95BF3273217272 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				997EDC50B3CEAAB31279D8A3 /* Source */,
+				6151B54F6CA7627ECF1FE736 /* Juce Library Code */,
+				25CF2523B01397BC8023EC58 /* Resources */,
+				386DECF8978C39A4F07097B9 /* Frameworks */,
+				4373B974F5BCA4EBEA75EB15 /* Products */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		179ED7DF7BF285EAA681833C /* PTSAFE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7974F2BB550F89624C17F0C /* Build configuration list for PBXNativeTarget "PTSAFE" */;
+			buildPhases = (
+				C2C651142E972C478312D4C0 /* Resources */,
+				9E6D5D72ED8336A4EC24187D /* Sources */,
+				43727DCCC67F60CD76F6077E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PTSAFE;
+			productInstallPath = "$(HOME)/Applications";
+			productName = PTSAFE;
+			productReference = 4DEBDD6074A0232AC5A4CF57 /* PTSAFE.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		013769286C18A3DC1286B883 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
+			buildConfigurationList = 4F5433E0C5EC4F5E85C15A18 /* Build configuration list for PBXProject "PTSAFE" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E3F0C3A22A95BF3273217272 /* Source */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				179ED7DF7BF285EAA681833C /* PTSAFE */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2C651142E972C478312D4C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E6D5D72ED8336A4EC24187D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3724F24D9B10D623626B5DED /* JuceLibraryCode1.mm in Sources */,
+				43CA02DE67EB9C3B9C4091F8 /* JuceLibraryCode2.mm in Sources */,
+				5F51127F43A66333C625D5F3 /* JuceLibraryCode3.mm in Sources */,
+				5BE722002F623A4BF0FA1AFE /* JuceLibraryCode4.mm in Sources */,
+				E467AB14140975BD0097D7AA /* Main.cpp in Sources */,
+				E467AB15140975BD0097D7AA /* MainAppWindow.cpp in Sources */,
+				E467AB1E140978490097D7AA /* AcousticModifiers.cpp in Sources */,
+				E467AB1F140978490097D7AA /* AudioParameter.cpp in Sources */,
+				E467AB20140978490097D7AA /* FileLoadSave.cpp in Sources */,
+				E467AB21140978490097D7AA /* GUIcomponent.cpp in Sources */,
+				E467AB22140978490097D7AA /* SineAudioSource.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		198D809E792E1479F4776AA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"DEBUG=1",
+					"JUCE_ObjCExtraSuffix=mUExB0",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64\"",
+					"\"$(SRCROOT)/../../Libraries\"",
+					"\"$(SYSTEM_APPS_DIR)/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		87528A2631D82BE838418F4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/extern/include,
+					../../Libraries,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64,
+					../../Libraries,
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/bin/maci64,
+				);
+				PRODUCT_NAME = PTSAFE;
+				WARNING_CFLAGS = "-Wreorder";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		94DCD7CA5911196303637D3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/extern/include,
+					../../Libraries,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64,
+					../../Libraries,
+					/Applications/MATLAB/MATLAB_Compiler_Runtime/v715/bin/maci64,
+				);
+				PRODUCT_NAME = PTSAFE;
+				WARNING_CFLAGS = "-Wreorder";
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		A22919F09486B9630AC3E87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_NDEBUG=1",
+					"NDEBUG=1",
+					"JUCE_ObjCExtraSuffix=mUExB0",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64\"",
+					"\"$(SRCROOT)/../../Libraries\"",
+					"\"$(SYSTEM_APPS_DIR)/MATLAB/MATLAB_Compiler_Runtime/v715/runtime/maci64\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F5433E0C5EC4F5E85C15A18 /* Build configuration list for PBXProject "PTSAFE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94DCD7CA5911196303637D3B /* Debug */,
+				87528A2631D82BE838418F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E7974F2BB550F89624C17F0C /* Build configuration list for PBXNativeTarget "PTSAFE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				198D809E792E1479F4776AA7 /* Debug */,
+				A22919F09486B9630AC3E87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 013769286C18A3DC1286B883 /* Project object */;
+}

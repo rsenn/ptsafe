@@ -15,8 +15,14 @@
 
 #define JUCE_DONT_DEFINE_MACROS 1
 
+
 #include "AppConfig.h"
-#include "../../juce/juce_amalgamated.h"
+#if JUCE_MAC
+    #include "../../../Common/juce/juce_amalgamated.h"
+#else
+    #include "../../juce/juce_amalgamated.h"
+#endif
+
 
 namespace ProjectInfo
 {
