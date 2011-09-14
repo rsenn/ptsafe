@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  26 Aug 2011 3:55:00pm
+  Creation date:  14 Sep 2011 10:46:12am
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -48,7 +48,8 @@ GUIcomponent::GUIcomponent ()
       slider_Rate (0),
       label_Rate (0),
       label_RateTh (0),
-      toggleLog (0)
+      toggleLog (0),
+      toggleCAD (0)
 {
     addAndMakeVisible (deviceSelector = new AudioDeviceSelectorComponent (deviceManager, 0, 0, 1, 1, false, false, false, true));
 
@@ -127,6 +128,10 @@ GUIcomponent::GUIcomponent ()
     toggleLog->setButtonText (L"Log");
     toggleLog->addListener (this);
 
+    addAndMakeVisible (toggleCAD = new ToggleButton (L"Toggle CAD"));
+    toggleCAD->setButtonText (L"CAD");
+    toggleCAD->addListener (this);
+
 
     //[UserPreSize]
 
@@ -162,6 +167,10 @@ GUIcomponent::GUIcomponent ()
 	currentFile = getMostRecentFile();
 	startTimer(dirTimer, 100);
 
+	// turn on the CAD and turn off the log
+	toggleCAD->setToggleState(true, true);
+	toggleLog->setToggleState(false, true);
+
     //[/Constructor]
 }
 
@@ -189,6 +198,7 @@ GUIcomponent::~GUIcomponent()
     deleteAndZero (label_Rate);
     deleteAndZero (label_RateTh);
     deleteAndZero (toggleLog);
+    deleteAndZero (toggleCAD);
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -231,6 +241,7 @@ void GUIcomponent::resized()
     label_Rate->setBounds (((27) + 165) + 42 - ((83) / 2), (32) + -24, 83, 31);
     label_RateTh->setBounds (24 - ((80) / 2), -24, 80, 31);
     toggleLog->setBounds (((27) + 165) + 136, 128, 47, 24);
+    toggleCAD->setBounds (((27) + 165) + 136, 152, 47, 24);
     //[UserResized] Add your own custom resize handling here..
 
 	for (int i=0; i<comArray.size(); i++)
@@ -287,6 +298,12 @@ void GUIcomponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_toggleLog] -- add your button handler code here..
         //[/UserButtonCode_toggleLog]
     }
+    else if (buttonThatWasClicked == toggleCAD)
+    {
+        //[UserButtonCode_toggleCAD] -- add your button handler code here..
+		sineAudioSource->toggleCAD(toggleCAD->getToggleState());
+        //[/UserButtonCode_toggleCAD]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -306,7 +323,7 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 		const int result = m.show();
 
 		switch (result) {
-		case 1: 
+		case 1:
 			{// Add new monitor
 			// add a pointer to the new component
 			comArray.add(new AudioParameter(comArray.size(), sineAudioSource, this));
@@ -315,19 +332,19 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 			resized();
 			}
 			break;
-		case 2: 
+		case 2:
 			{// Save settings
 			saveSettings();
 			}
 			break;
-		case 3: 
+		case 3:
 			{// Load settings
 			loadSettings();
 			resized();
 			startTimer(loadTimer, 50);
 			}
 			break;
-		case 4: 
+		case 4:
 			{// Re-run case
 			// stop the live monitor
 			stopTimer(dirTimer);
@@ -335,9 +352,9 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 			// ask the user to select a starting-off file
 			WildcardFileFilter wildcardFilter ("*.csv", String::empty, "PT-SAFE log files");
 			File lookIn = File::getSpecialLocation (File::userDocumentsDirectory).getChildFile("PTSAFE/Data/");
-			FileBrowserComponent browser (FileBrowserComponent::canSelectFiles|FileBrowserComponent::openMode, 
+			FileBrowserComponent browser (FileBrowserComponent::canSelectFiles|FileBrowserComponent::openMode,
 										  lookIn, &wildcardFilter, nullptr);
-			FileChooserDialogBox dialogBox("Open a PT-SAFE log file", "Select a starting file...", browser, 
+			FileChooserDialogBox dialogBox("Open a PT-SAFE log file", "Select a starting file...", browser,
 											false, Colours::lightgrey);
 			if (dialogBox.show())
 			{
@@ -346,7 +363,7 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 				nextFile = currentFile;
 				startTimer(rerunTimer, 1000);
 			}
-				
+
 			}
 
 			break;
@@ -494,7 +511,7 @@ File GUIcomponent::getMostRecentFile(void)
 		if (iter.getFile().getFileNameWithoutExtension().compare(mostRecentFile.getFileName()) )
 			mostRecentFile = iter.getFile();
 	}
-	
+
 	return mostRecentFile;
 }
 void GUIcomponent::changeListenerCallback(ChangeBroadcaster* source)
@@ -721,6 +738,10 @@ BEGIN_JUCER_METADATA
   <TOGGLEBUTTON name="Toggle Log" id="c3e95e7b6a724c01" memberName="toggleLog"
                 virtualName="" explicitFocusOrder="0" pos="136 128 47 24" posRelativeX="200f14d087a1fc8e"
                 buttonText="Log" connectedEdges="0" needsCallback="1" radioGroupId="0"
+                state="0"/>
+  <TOGGLEBUTTON name="Toggle CAD" id="34f07c5369c09bf9" memberName="toggleCAD"
+                virtualName="" explicitFocusOrder="0" pos="136 152 47 24" posRelativeX="200f14d087a1fc8e"
+                buttonText="CAD" connectedEdges="0" needsCallback="1" radioGroupId="0"
                 state="0"/>
 </JUCER_COMPONENT>
 

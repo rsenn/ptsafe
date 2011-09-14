@@ -71,18 +71,12 @@ public:
 			case MATLAB:
 				mxDestroyArray(vitalID_ptr); vitalID_ptr=NULL;
 				mxDestroyArray(u_ptr); u_ptr=NULL;
-				//mxDestroyArray(state_ptr); state_ptr=NULL;
-
-
-				/*
-				mxFree(x);
-				mxFree(y);
-				*/
-				
 
 				break;
 		}
 	}
+
+	
 
 
 /** Returns the current ModifierType
@@ -279,9 +273,7 @@ public:
 					
 					audioFileSource->getNextAudioBlock(soundFileBuffer);	// put sound-file data into soundFileBuffer
 
-
-					//( destChannel, destStartSample, source, sourceChannel, sourceStartSample, numSamples, gain)
-					outputBuffer.addFrom(ch, startSample, sourceBuffer, 0, 0, numSamples, (float)masterLevel);
+					outputBuffer.addFrom(ch, startSample, sourceBuffer, 0, 0, numSamples, 1.f);
 
 				}
 
@@ -339,29 +331,14 @@ public:
 							*outputBuffer.getSampleData(ch, startSample) = inSample + (float)(temp * level*masterLevel);
 							break;
 
-/*
-						case AUDIOFILE:
-							//it++;	
-							AudioSourceChannelInfo bufferToFill;	// create a buffer
-							AudioSampleBuffer sourceBuffer (1, 1);	// make it 1 ch, 1 sample
-							bufferToFill.buffer=&sourceBuffer;		
-							bufferToFill.startSample=0;
-							bufferToFill.numSamples=1;
-					
-							audioFileSource->getNextAudioBlock(bufferToFill);	// put sound-file data into bufferToFill
-							*outputBuffer.getSampleData(ch, startSample) = inSample+(*bufferToFill.buffer->getSampleData(0))*(float)masterLevel; // assign to outSample
-
-							break;
-*/
 						}//switch
 		////////////////////////////////////////////////////////////////////// END SWITCH
-
 
 
 					} // end channel loop
 					++startSample;
 				} // end buffer loop (while)
-			}// if/else on "is it matlab?"
+			}// if/else on "is it matlab or audio-file?"
 		}// if wasInit		
 	}// PROCESSBUFFER
 
