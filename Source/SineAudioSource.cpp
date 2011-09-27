@@ -35,8 +35,6 @@ public:
 		startThread(8);
 		setLevel(0); 	
 
-	//	jassert(mclInitializeApplication(NULL,0));
-	//	jassert(foolibInitialize());
 		mclInitializeApplication(NULL,0);
 		foolibInitialize();
 		state = mxCreateDoubleMatrix(1024, 1, mxREAL);
@@ -65,6 +63,7 @@ public:
 	void addParam(void) {
 		audioChain.add(new AcousticFilter());
 	}
+	
 
 
 	/** This is called by an element of audioChain when a user selects a new (non-default) alarm type.
@@ -127,6 +126,18 @@ public:
 	 */
 	void removeObject(int obj) {
 		audioChain.remove(obj);
+	}
+
+	/** This sets the pulse-ox CAD within or without the processing chain.
+	 */
+	void toggleCAD(bool isOn) {
+		cad = isOn;
+	}
+
+	/** This returns the status of the pulse-ox CAD w.r.t. its inclusion in the Fx chain
+	 */
+	bool getCAD(void){
+		return cad;
 	}
 
 
@@ -199,25 +210,43 @@ public:
 	}
 
 
-	/** Processes audio block by passing to each element of the audioChain's processSample() function.
+	/** Processes audio block by passing to each element of the audioChain's processBuffer() function.
 	 */
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
     {
-        bufferToFill.clearActiveBufferRegion();
 
-		// get buffer of sinusoid
-		osc->getNextAudioBlock(bufferToFill);
-
-
-
-		// apply all effects to it
-		for (int i=0; i<audioChain.size(); i++) {
-			audioChain[i]->processBuffer(bufferToFill, &state);
-		}
+		bufferToFill.clearActiveBufferRegion();
 		
+		if (!getCAD()) { // if not processing pulse-ox CAD
+
+			AudioSourceChannelInfo tempBufferInfo;	
+			AudioSampleBuffer tempBuffer (1, bufferToFill.numSamples);
+			tempBufferInfo.buffer=&tempBuffer;	
+			tempBufferInfo.startSample=bufferToFill.startSample;
+			tempBufferInfo.numSamples = bufferToFill.numSamples;
+
+			osc->getNextAudioBlock(tempBufferInfo);	// put CAD info in a temp buffer
+
+			for (int i=0; i<audioChain.size(); i++) {	// apply pulse width to temp buffer
+				if (audioChain[i]->getType() == GATE)
+					audioChain[i]->processBuffer(tempBufferInfo, &state);
+			}
+
+			for (int i=0; i<audioChain.size(); i++) // apply Fx to sound files
+				audioChain[i]->processBuffer(bufferToFill, &state);
+
+			bufferToFill.buffer->addFrom(0, 0, tempBuffer, 0, 0, bufferToFill.numSamples); // sum buffers
+
+		}
+		else {
+			osc->getNextAudioBlock(bufferToFill);
+
+			for (int i=0; i<audioChain.size(); i++) 
+				audioChain[i]->processBuffer(bufferToFill, &state);
+		}
+
 	}
 	
-
 
 	~SineAudioSource() {	
 		mxDestroyArray(state); state=NULL;
@@ -235,6 +264,7 @@ private:
 	OwnedArray<AcousticFilter> audioChain;
 	unsigned int timeNow;
 	ToneGeneratorAudioSource *osc;
+	bool cad;
 
 protected:
 	mxArray *state;

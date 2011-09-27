@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  26 Aug 2011 3:55:00pm
+  Creation date:  27 Sep 2011 1:00:15pm
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -19,8 +19,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
-#define __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
+#ifndef __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_EA6A8B15__
+#define __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_EA6A8B15__
 
 //[Headers]     -- You can add your own extra header files here --
 
@@ -160,6 +160,7 @@ private:
     Label* label_Rate;
     Label* label_RateTh;
     ToggleButton* toggleLog;
+    ToggleButton* toggleCAD;
 
 
     //==============================================================================
@@ -169,4 +170,4 @@ private:
 };
 
 
-#endif   // __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_FFD34107__
+#endif   // __JUCER_HEADER_GUICOMPONENT_GUICOMPONENT_EA6A8B15__
