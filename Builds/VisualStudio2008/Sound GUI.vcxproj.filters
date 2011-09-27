@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sound GUI">
+      <UniqueIdentifier>{15ae60de-5b43-4894-911d-3cd1f0d7a956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound GUI\Source">
+      <UniqueIdentifier>{cecb8e73-6b14-46f0-a08b-62a184d748ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Library Code">
+      <UniqueIdentifier>{904f006e-afc6-42c5-af02-e1dffa38b091}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Main.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\JuceLibraryCode1.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\JuceLibraryCode2.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\JuceLibraryCode3.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\JuceLibraryCode4.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MainAppWindow.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUIcomponent.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AcousticModifiers.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AudioParameter.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SineAudioSource.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FileLoadSave.cpp">
+      <Filter>Sound GUI\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MainAppWindow.h">
+      <Filter>Sound GUI\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUIcomponent.h">
+      <Filter>Sound GUI\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AudioParameter.h">
+      <Filter>Sound GUI\Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Libraries\ptsafe.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Libraries\resource.rc" />
+  </ItemGroup>
+</Project>
