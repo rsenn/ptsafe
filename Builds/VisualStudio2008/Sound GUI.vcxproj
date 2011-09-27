@@ -183,7 +183,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\..\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\juce;%(AdditionalIncludeDirectories);..\..\Libraries;C:\Program Files\MATLAB\R2009b\extern\include;C:\Program Files\MATLAB\R2010a\extern\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
