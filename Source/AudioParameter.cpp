@@ -64,8 +64,8 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     AlarmSelect->addItem (T("Amp Mod"), 2);
     AlarmSelect->addItem (T("Distortion"), 3);
     AlarmSelect->addItem (T("Harmony"), 4);
-    AlarmSelect->addItem (T("Sheppard (Up)"), 5);
-    AlarmSelect->addItem (T("Sheppard (Dn)"), 6);
+ //   AlarmSelect->addItem (T("Sheppard (Up)"), 5);
+ //   AlarmSelect->addItem (T("Sheppard (Dn)"), 6);
     AlarmSelect->addItem (T("Pulse Width"), 7);
     AlarmSelect->addItem (T("Sound File"), 8);
     AlarmSelect->addItem (T("MATLAB"), 9);
