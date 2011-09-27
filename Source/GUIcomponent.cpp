@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  14 Sep 2011 10:46:12am
+  Creation date:  27 Sep 2011 1:00:15pm
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -73,8 +73,8 @@ GUIcomponent::GUIcomponent ()
     label_SineAmp->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (web_anesthesiology = new HyperlinkButton (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology",
-                                                                 URL (L"http://anesthesiology.med.miami.edu/")));
-    web_anesthesiology->setTooltip (L"http://anesthesiology.med.miami.edu/");
+                                                                 URL (L"http://ptsafe.wordpress.com")));
+    web_anesthesiology->setTooltip (L"http://ptsafe.wordpress.com");
     web_anesthesiology->setButtonText (L"\xa9 UHealth Miller School of Medicine Dept Anesthesiology");
 
     addAndMakeVisible (slider_SineFreq = new Slider (String::empty));
@@ -702,9 +702,9 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.7"
          bold="0" italic="0" justification="33"/>
   <HYPERLINKBUTTON name="Anesthesiology Link" id="e9bae957461270e0" memberName="web_anesthesiology"
-                   virtualName="" explicitFocusOrder="0" pos="440 165 301 18" tooltip="http://anesthesiology.med.miami.edu/"
+                   virtualName="" explicitFocusOrder="0" pos="440 165 301 18" tooltip="http://ptsafe.wordpress.com"
                    buttonText="&#169; UHealth Miller School of Medicine Dept Anesthesiology"
-                   connectedEdges="0" needsCallback="0" radioGroupId="0" url="http://anesthesiology.med.miami.edu/"/>
+                   connectedEdges="0" needsCallback="0" radioGroupId="0" url="http://ptsafe.wordpress.com"/>
   <SLIDER name="" id="76f56ba8346165c2" memberName="slider_SineFreq" virtualName=""
           explicitFocusOrder="0" pos="75 32 72 136" posRelativeX="d0de66c6c0fab642"
           tooltip="% O2 Saturation" thumbcol="ff000000" trackcol="7fffffff"
