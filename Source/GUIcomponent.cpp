@@ -570,6 +570,21 @@ void GUIcomponent::grabVitalsFromDisk(File newFile)
 			case ST:	// EKG ST-segment elevation
 				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("st")));
 				break;
+			case TV: // tidal volume from aestiva
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("tv")));
+				break;
+			case MV: // minute volume
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("mv")));
+				break;
+			case O2LVL: // oxygen level
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("o2lvl")));
+				break;
+			case RR2: // respiratory rate from aestiva
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("rr2")));
+				break;
+			case MAXPP: // maximum peak pressure (aestiva)
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("maxpp")));
+				break;
 				/*
 			case IR:	// infrared amplitude
 				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("ir")));
