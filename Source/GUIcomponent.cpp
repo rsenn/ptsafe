@@ -385,7 +385,7 @@ void GUIcomponent::mouseDown (const MouseEvent& e)
 
 void GUIcomponent::saveSettings(void) {
 	for (int i=0; i<comArray.size(); i++) {// send over all of the components individually
-		if (comArray[i]->getVitalID() >= 0 && comArray[i]->getVitalID() < 20)
+		if (comArray[i]->getVitalID() >= 0 && comArray[i]->getVitalID() < NUMVITALS)
 			settingsFile->saveXML(i, comArray[i]);
 	}
 	settingsFile->saveAsInteractive(true);			// then send a save command ... FBD takes care of removing old data
@@ -569,6 +569,21 @@ void GUIcomponent::grabVitalsFromDisk(File newFile)
 				break;
 			case ST:	// EKG ST-segment elevation
 				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("st")));
+				break;
+			case TV: // tidal volume from aestiva
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("tv")));
+				break;
+			case MV: // minute volume
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("mv")));
+				break;
+			case O2LVL: // oxygen level
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("o2lvl")));
+				break;
+			case RR2: // respiratory rate from aestiva
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("rr2")));
+				break;
+			case MAXPP: // maximum peak pressure (aestiva)
+				comArray[i]->setVitalVal((float)getValFromDataString(fileData, T("maxpp")));
 				break;
 				/*
 			case IR:	// infrared amplitude

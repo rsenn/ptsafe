@@ -208,7 +208,7 @@ public:
 		for (int i=0; i <audioChain.size(); i++)
 			audioChain[i]->setMasterFrequency(freq);
 	}
-
+	
 
 	/** Processes audio block by passing to each element of the audioChain's processBuffer() function.
 	 */
@@ -217,7 +217,7 @@ public:
 
 		bufferToFill.clearActiveBufferRegion();
 		
-		if (!getCAD()) { // if not processing pulse-ox CAD
+		if (0){//!getCAD()) { // if not processing pulse-ox CAD
 
 			AudioSourceChannelInfo tempBufferInfo;	
 			AudioSampleBuffer tempBuffer (1, bufferToFill.numSamples);
@@ -232,6 +232,7 @@ public:
 					audioChain[i]->processBuffer(tempBufferInfo, &state);
 			}
 
+			
 			for (int i=0; i<audioChain.size(); i++) // apply Fx to sound files
 				audioChain[i]->processBuffer(bufferToFill, &state);
 
@@ -239,6 +240,14 @@ public:
 
 		}
 		else {
+			for (int i=0; i<audioChain.size(); i++) {
+				if (audioChain[i]->getType() == FM)
+
+					osc->setFrequency((PULSE_OX_FREQ-5*(100-SAT)) + audioChain[i]->getFMphase(bufferToFill));
+			}
+
+			bufferToFill.clearActiveBufferRegion();
+
 			osc->getNextAudioBlock(bufferToFill);
 
 			for (int i=0; i<audioChain.size(); i++) 
@@ -253,7 +262,6 @@ public:
 
 		foolibTerminate();
 		mclTerminateApplication();
-
 
 		osc->~ToneGeneratorAudioSource();
 		stopThread(2000);

@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  15 Mar 2011 11:35:15am
+  Creation date:  18 Nov 2011 9:34:25am
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -46,33 +46,35 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
       urgencyLabel (0),
       urgencyValue (0),
       threshLabel (0),
-      threshVal (0)
+      threshVal (0),
+      toggleContinuous (0)
 {
-    addAndMakeVisible (propertySlider = new Slider (T("slider")));
+    addAndMakeVisible (propertySlider = new Slider (L"slider"));
     propertySlider->setRange (0, 1, 0.05);
     propertySlider->setSliderStyle (Slider::Rotary);
     propertySlider->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     propertySlider->addListener (this);
 
-    addAndMakeVisible (AlarmSelect = new ComboBox (T("Alarm Select")));
-    AlarmSelect->setTooltip (T("Alarm type to sound"));
+    addAndMakeVisible (AlarmSelect = new ComboBox (L"Alarm Select"));
+    AlarmSelect->setTooltip (L"Alarm type to sound");
     AlarmSelect->setEditableText (false);
     AlarmSelect->setJustificationType (Justification::centredLeft);
-    AlarmSelect->setTextWhenNothingSelected (T("Alarm Type"));
-    AlarmSelect->setTextWhenNoChoicesAvailable (T("(no choices)"));
-    AlarmSelect->addItem (T("Noise"), 1);
-    AlarmSelect->addItem (T("Amp Mod"), 2);
-    AlarmSelect->addItem (T("Distortion"), 3);
-    AlarmSelect->addItem (T("Harmony"), 4);
- //   AlarmSelect->addItem (T("Sheppard (Up)"), 5);
- //   AlarmSelect->addItem (T("Sheppard (Dn)"), 6);
-    AlarmSelect->addItem (T("Pulse Width"), 7);
-    AlarmSelect->addItem (T("Sound File"), 8);
-    AlarmSelect->addItem (T("MATLAB"), 9);
+    AlarmSelect->setTextWhenNothingSelected (L"Alarm Type");
+    AlarmSelect->setTextWhenNoChoicesAvailable (L"(no choices)");
+    AlarmSelect->addItem (L"Noise", 1);
+    AlarmSelect->addItem (L"Amp Mod", 2);
+    AlarmSelect->addItem (L"Freq Mod", 3);
+    AlarmSelect->addItem (L"Distortion", 4);
+    AlarmSelect->addItem (L"Harmony", 5);
+    AlarmSelect->addItem (L"Sheppard (Up)", 6);
+    AlarmSelect->addItem (L"Sheppard (Dn)", 7);
+    AlarmSelect->addItem (L"Pulse Width", 8);
+    AlarmSelect->addItem (L"Sound File", 9);
+    AlarmSelect->addItem (L"MATLAB", 10);
     AlarmSelect->addListener (this);
 
-    addAndMakeVisible (textOrder = new TextEditor (T("Order Box")));
-    textOrder->setTooltip (T("Alarm Order"));
+    addAndMakeVisible (textOrder = new TextEditor (L"Order Box"));
+    textOrder->setTooltip (L"Alarm Order");
     textOrder->setMultiLine (false);
     textOrder->setReturnKeyStartsNewLine (false);
     textOrder->setReadOnly (false);
@@ -81,27 +83,32 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     textOrder->setPopupMenuEnabled (true);
     textOrder->setText (String::empty);
 
-    addAndMakeVisible (vitalSelect = new ComboBox (T("Vital Select")));
-    vitalSelect->setTooltip (T("Vital sign to monitor"));
+    addAndMakeVisible (vitalSelect = new ComboBox (L"Vital Select"));
+    vitalSelect->setTooltip (L"Vital sign to monitor");
     vitalSelect->setEditableText (false);
     vitalSelect->setJustificationType (Justification::centredLeft);
-    vitalSelect->setTextWhenNothingSelected (T("Vital Sign"));
-    vitalSelect->setTextWhenNoChoicesAvailable (T("(no choices)"));
-    vitalSelect->addItem (T("Heart Rate"), 1);
-    vitalSelect->addItem (T("SpO2"), 2);
-    vitalSelect->addItem (T("Resp Rate"), 3);
-    vitalSelect->addItem (T("Systolic BP"), 4);
-    vitalSelect->addItem (T("Diastolic BP"), 5);
-    vitalSelect->addItem (T("Mean BP"), 6);
-    vitalSelect->addItem (T("Temp"), 7);
-    vitalSelect->addItem (T("ST elevation"), 8);
-    vitalSelect->addItem (T("ETCO2"), 9);
-    vitalSelect->addItem (T("FIO2"), 10);
-    vitalSelect->addItem (T("FIAA"), 11);
-    vitalSelect->addItem (T("pPeak-airway"), 12);
-    vitalSelect->addItem (T("PEEP"), 13);
-    vitalSelect->addItem (T("Min Vol Exp"), 14);
-    vitalSelect->addItem (T("PCWP"), 15);
+    vitalSelect->setTextWhenNothingSelected (L"Vital Sign");
+    vitalSelect->setTextWhenNoChoicesAvailable (L"(no choices)");
+    vitalSelect->addItem (L"Heart Rate", 1);
+    vitalSelect->addItem (L"SpO2", 2);
+    vitalSelect->addItem (L"Resp Rate (AS/3)", 3);
+    vitalSelect->addItem (L"Systolic BP", 4);
+    vitalSelect->addItem (L"Diastolic BP", 5);
+    vitalSelect->addItem (L"Mean BP", 6);
+    vitalSelect->addItem (L"Temp", 7);
+    vitalSelect->addItem (L"ST elevation", 8);
+    vitalSelect->addItem (L"ETCO2", 9);
+    vitalSelect->addItem (L"Tidal Volume", 10);
+    vitalSelect->addItem (L"Minute Volume", 11);
+    vitalSelect->addItem (L"O2 Level", 12);
+    vitalSelect->addItem (L"Resp Rate (Aestiva)", 13);
+    vitalSelect->addItem (L"Max Peak Pressure", 14);
+    vitalSelect->addItem (L"FIO2", 15);
+    vitalSelect->addItem (L"FIAA", 16);
+    vitalSelect->addItem (L"pPeak-airway", 17);
+    vitalSelect->addItem (L"PEEP", 18);
+    vitalSelect->addItem (L"Min Vol Exp", 19);
+    vitalSelect->addItem (L"PCWP", 20);
     vitalSelect->addListener (this);
 
     addAndMakeVisible (upperTh = new Slider (String::empty));
@@ -116,7 +123,7 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     lowerTh->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     lowerTh->addListener (this);
 
-    addAndMakeVisible (fileLabel = new Label (T("File Lable"),
+    addAndMakeVisible (fileLabel = new Label (L"File Lable",
                                               String::empty));
     fileLabel->setFont (Font (10.1000f, Font::plain));
     fileLabel->setJustificationType (Justification::centredLeft);
@@ -124,7 +131,7 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     fileLabel->setColour (TextEditor::textColourId, Colours::black);
     fileLabel->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
-    addAndMakeVisible (val = new Slider (T("Value Slider")));
+    addAndMakeVisible (val = new Slider (L"Value Slider"));
     val->setRange (0, 1, 0);
     val->setSliderStyle (Slider::LinearHorizontal);
     val->setTextBoxStyle (Slider::NoTextBox, true, 80, 20);
@@ -135,16 +142,16 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     val->setColour (Slider::rotarySliderOutlineColourId, Colour (0xffffff));
     val->addListener (this);
 
-    addAndMakeVisible (upperLabel = new Label (T("Upper Threshold"),
-                                               T("Upper Thresholds")));
+    addAndMakeVisible (upperLabel = new Label (L"Upper Threshold",
+                                               L"Upper Thresholds"));
     upperLabel->setFont (Font (15.0000f, Font::plain));
     upperLabel->setJustificationType (Justification::centredLeft);
     upperLabel->setEditable (false, false, false);
     upperLabel->setColour (TextEditor::textColourId, Colours::black);
     upperLabel->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
-    addAndMakeVisible (lowerLabel = new Label (T("Lower Threshold"),
-                                               T("Lower Thresholds")));
+    addAndMakeVisible (lowerLabel = new Label (L"Lower Threshold",
+                                               L"Lower Thresholds"));
     lowerLabel->setFont (Font (15.0000f, Font::plain));
     lowerLabel->setJustificationType (Justification::centredLeft);
     lowerLabel->setEditable (false, false, false);
@@ -152,7 +159,7 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     lowerLabel->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
     addAndMakeVisible (urgencyLabel = new Label (String::empty,
-                                                 T("Strength:")));
+                                                 L"Urgency:"));
     urgencyLabel->setFont (Font (11.0000f, Font::plain));
     urgencyLabel->setJustificationType (Justification::centredLeft);
     urgencyLabel->setEditable (false, false, false);
@@ -186,6 +193,10 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     threshVal->setColour (TextEditor::textColourId, Colours::black);
     threshVal->setColour (TextEditor::backgroundColourId, Colour (0x0));
 
+    addAndMakeVisible (toggleContinuous = new ToggleButton (L"Continuous Sonification"));
+    toggleContinuous->setButtonText (L"Sonify");
+    toggleContinuous->addListener (this);
+
 
     //[UserPreSize]
 	// register callback on texbox change
@@ -199,6 +210,7 @@ AudioParameter::AudioParameter (int order_, SineAudioSource* ref_, GUIcomponent*
     //[/UserPreSize]
 
     setSize (780, 80);
+
 
     //[Constructor] You can add your own custom stuff here..
 	ref = ref_;
@@ -242,6 +254,8 @@ AudioParameter::~AudioParameter()
     deleteAndZero (urgencyValue);
     deleteAndZero (threshLabel);
     deleteAndZero (threshVal);
+    deleteAndZero (toggleContinuous);
+
 
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
@@ -290,7 +304,7 @@ void AudioParameter::resized()
 {
     propertySlider->setBounds (59, 5, 63, 64);
     AlarmSelect->setBounds (133, 26, 155, 24);
-    textOrder->setBounds (8, 23, 32, 24);
+    textOrder->setBounds (8, 16, 32, 24);
     vitalSelect->setBounds (304, 26, 136, 24);
     upperTh->setBounds (448, 2, 312, 32);
     lowerTh->setBounds (448, 42, 312, 32);
@@ -302,6 +316,7 @@ void AudioParameter::resized()
     urgencyValue->setBounds (169, 6, 30, 12);
     threshLabel->setBounds (203, 6, 60, 12);
     threshVal->setBounds (259, 6, 30, 12);
+    toggleContinuous->setBounds (5, 40, 55, 16);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -380,7 +395,7 @@ void AudioParameter::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == val)
     {
         //[UserSliderCode_val] -- add your slider handling code here..
-		lowerTh->setComponentEffect(NULL);			// if highlighted, return to non-highlighted 
+		lowerTh->setComponentEffect(NULL);			// if highlighted, return to non-highlighted
 		upperTh->setComponentEffect(NULL);
 		propertySlider->setComponentEffect(NULL);
 
@@ -425,6 +440,21 @@ void AudioParameter::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
     //[UsercomboBoxChanged_Post]
     //[/UsercomboBoxChanged_Post]
+}
+
+void AudioParameter::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == toggleContinuous)
+    {
+        //[UserButtonCode_toggleContinuous] -- add your button handler code here..
+        //[/UserButtonCode_toggleContinuous]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
 }
 
 void AudioParameter::filesDropped (const StringArray& filenames, int mouseX, int mouseY)
@@ -511,7 +541,8 @@ void AudioParameter::mouseDown (const MouseEvent& e)
 
 
 void AudioParameter::setVitalVal(float value) {
-	val->setValue(value);
+	//if (val != 0)
+		val->setValue(value);
 }
 
 void AudioParameter::setAlarmID(int alarmID_) {
@@ -610,22 +641,43 @@ VitalSignParams AudioParameter::getVitalSignParams(int vitalID_) {
 	return ref->getVitalSignParams(vitalID_, AudioParameter::getOrder());
 }
 
-
 void AudioParameter::compareThresholds(void) {
-	if ( val->getValue() > upperTh->getMaxValue() ) {
-		propertySlider->setValue(upperUrgDang);	// upper danger
-	}
-	else if ( val->getValue() > upperTh->getMinValue() ) {
-		propertySlider->setValue(upperUrgWarn);	// upper warning
-	}
-	else if ( val->getValue() < lowerTh->getMinValue() ) {
-		propertySlider->setValue(lowerUrgDang);	// lower danger
-	}
-	else if ( val->getValue() < lowerTh->getMaxValue() ) {
-		propertySlider->setValue(lowerUrgWarn);	// lower warning
+
+	if (toggleContinuous->getToggleState()) {
+		if ( val->getValue() >= upperTh->getMaxValue() ) {
+			propertySlider->setValue(upperUrgDang);	// upper danger
+		}
+		else if ( val->getValue() >= upperTh->getMinValue() ) {
+			float valpct = (float)(val->getValue()-upperTh->getMinValue())/(upperTh->getMaxValue()-upperTh->getMinValue());
+			propertySlider->setValue(valpct*(upperUrgDang-upperUrgWarn)+upperUrgWarn);	// upper warning
+		}
+		else if ( val->getValue() <= lowerTh->getMinValue() ) {
+			propertySlider->setValue(lowerUrgDang);	// lower danger
+		}
+		else if ( val->getValue() <= lowerTh->getMaxValue() ) {
+			float valpct = (float)(lowerTh->getMaxValue()-val->getValue())/(lowerTh->getMaxValue()-lowerTh->getMinValue());
+			propertySlider->setValue(valpct*(lowerUrgDang-lowerUrgWarn)+lowerUrgWarn);	// lower warning
+		}
+		else {
+			propertySlider->setValue(normalUrg);	// normal
+		}
 	}
 	else {
-		propertySlider->setValue(normalUrg);	// normal
+		if ( val->getValue() > upperTh->getMaxValue() ) {
+			propertySlider->setValue(upperUrgDang);	// upper danger
+		}
+		else if ( val->getValue() > upperTh->getMinValue() ) {
+			propertySlider->setValue(upperUrgWarn);	// upper warning
+		}
+		else if ( val->getValue() < lowerTh->getMinValue() ) {
+			propertySlider->setValue(lowerUrgDang);	// lower danger
+		}
+		else if ( val->getValue() < lowerTh->getMaxValue() ) {
+			propertySlider->setValue(lowerUrgWarn);	// lower warning
+		}
+		else {
+			propertySlider->setValue(normalUrg);	// normal
+		}
 	}
 }
 
@@ -688,15 +740,15 @@ BEGIN_JUCER_METADATA
           textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <COMBOBOX name="Alarm Select" id="2e91e9d52acb4243" memberName="AlarmSelect"
             virtualName="" explicitFocusOrder="0" pos="133 26 155 24" tooltip="Alarm type to sound"
-            editable="0" layout="33" items="Noise&#10;Amp Mod&#10;Distortion&#10;Harmony&#10;Sheppard (Up)&#10;Sheppard (Dn)&#10;Pulse Width&#10;Sound File&#10;MATLAB"
+            editable="0" layout="33" items="Noise&#10;Amp Mod&#10;Freq Mod&#10;Distortion&#10;Harmony&#10;Sheppard (Up)&#10;Sheppard (Dn)&#10;Pulse Width&#10;Sound File&#10;MATLAB"
             textWhenNonSelected="Alarm Type" textWhenNoItems="(no choices)"/>
   <TEXTEDITOR name="Order Box" id="268a72aabe212042" memberName="textOrder"
-              virtualName="" explicitFocusOrder="0" pos="8 23 32 24" tooltip="Alarm Order"
+              virtualName="" explicitFocusOrder="0" pos="8 16 32 24" tooltip="Alarm Order"
               initialText="" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="0" caret="1" popupmenu="1"/>
   <COMBOBOX name="Vital Select" id="1dee5b011bf7a471" memberName="vitalSelect"
             virtualName="" explicitFocusOrder="0" pos="304 26 136 24" tooltip="Vital sign to monitor"
-            editable="0" layout="33" items="Heart Rate&#10;SpO2&#10;Resp Rate&#10;Systolic BP&#10;Diastolic BP&#10;Mean BP&#10;Temp&#10;ST elevation&#10;ETCO2&#10;FIO2&#10;FIAA&#10;pPeak-airway&#10;PEEP&#10;Min Vol Exp&#10;PCWP"
+            editable="0" layout="33" items="Heart Rate&#10;SpO2&#10;Resp Rate (AS/3)&#10;Systolic BP&#10;Diastolic BP&#10;Mean BP&#10;Temp&#10;ST elevation&#10;ETCO2&#10;Tidal Volume&#10;Minute Volume&#10;O2 Level&#10;Resp Rate (Aestiva)&#10;Max Peak Pressure&#10;FIO2&#10;FIAA&#10;pPeak-airway&#10;PEEP&#10;Min Vol Exp&#10;PCWP"
             textWhenNonSelected="Vital Sign" textWhenNoItems="(no choices)"/>
   <SLIDER name="" id="da8247590ad48e80" memberName="upperTh" virtualName=""
           explicitFocusOrder="0" pos="448 2 312 32" min="0" max="1" int="0"
@@ -746,6 +798,9 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="11"
          bold="0" italic="0" justification="33"/>
+  <TOGGLEBUTTON name="Continuous Sonification" id="76d12cae64035a01" memberName="toggleContinuous"
+                virtualName="" explicitFocusOrder="0" pos="5 40 55 16" buttonText="Sonify"
+                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
