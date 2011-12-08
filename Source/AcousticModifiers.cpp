@@ -55,6 +55,10 @@ public:
 			case AM:
 				delete osc;
 				break;
+			case FM:
+				delete osc;
+				break;
+		
 			case HARMONIC:
 				delete osc;
 				stopTimer(offsetTimer);
@@ -106,6 +110,12 @@ public:
 			osc->setAmplitude(0);
 			break;
 
+		case FM:
+			osc = new ToneGeneratorAudioSource ();
+			osc->setFrequency(0);
+			osc->setAmplitude(0);
+			break;
+			
 		case HARMONIC:
 			osc = new ToneGeneratorAudioSource ();
 			osc->setAmplitude( 0 );
@@ -186,6 +196,13 @@ public:
 					}
 					break;
 
+				case FM:
+					if (type==FM) {
+						osc->setFrequency((float)val*8.f*2560.f);
+						osc->setAmplitude((float)30*val);
+					}
+					break;
+					
 				case DISTORTION:
 					if (type==DISTORTION){
 						GUIknee = val;
@@ -314,6 +331,10 @@ public:
 							*outputBuffer.getSampleData(ch, startSample) = inSample*(1+osc->getSample());
 							break;
 
+						case FM:
+							*outputBuffer.getSampleData(ch, startSample)=inSample;
+							break;
+							
 						case DISTORTION:
 							if (inSample > knee)
 								*outputBuffer.getSampleData(ch, startSample) = (float)(knee +(inSample-knee)/DISTORTION_RATIO);
@@ -375,6 +396,7 @@ public:
 		switch(type) {
 			case AM:
 			case HARMONIC:
+		/*	case FM:*/
 				osc->prepareToPlay(samplesPerBlock, sampleRate);
 				break;
 
@@ -523,6 +545,17 @@ public:
 		//audioFileSource->setNextReadPosition(0);
 		audioFileSource->prepareToPlay(samplesPerBlock, sampleRate);
 		setReady(true);
+	}
+
+
+	/** Returns the value of the FM modulator frequency
+	*/
+	float getFMphase(const AudioSourceChannelInfo& bufferToFill)
+	{
+		//osc->getNextAudioBlock(bufferToFill);
+		//float sample = bufferToFill.buffer->getRMSLevel(0,0,bufferToFill.numSamples);
+		float sample = osc->getSample();
+		return sample;
 	}
 
 
@@ -878,6 +911,76 @@ private:
 		vitals[PCWP].normurg = 0.0f;
 		vitals[PCWP].uppurg_warn = 0.5f;
 		vitals[PCWP].uppurg_dang = 1.0f;
+
+		vitals[TV].absmin = 0;
+		vitals[TV].lowth_dang = 100;
+		vitals[TV].lowth_warn = 300;
+		vitals[TV].val = 500;
+		vitals[TV].uppth_warn = 700;
+		vitals[TV].uppth_dang = 900;
+		vitals[TV].absmax = 1000;
+		vitals[TV].skew = 1.f;
+		vitals[TV].lowurg_dang = 1.0f;
+		vitals[TV].lowurg_warn = 0.5f;
+		vitals[TV].normurg = 0.0f;
+		vitals[TV].uppurg_warn = 0.5f;
+		vitals[TV].uppurg_dang = 1.0f;
+
+		vitals[MV].absmin = 0;
+		vitals[MV].lowth_dang = 2;
+		vitals[MV].lowth_warn = 5;
+		vitals[MV].val = 6;
+		vitals[MV].uppth_warn = 8;
+		vitals[MV].uppth_dang = 15;
+		vitals[MV].absmax = 40;
+		vitals[MV].skew = 1.f;
+		vitals[MV].lowurg_dang = 1.0f;
+		vitals[MV].lowurg_warn = 0.5f;
+		vitals[MV].normurg = 0.0f;
+		vitals[MV].uppurg_warn = 0.5f;
+		vitals[MV].uppurg_dang = 1.0f;
+
+		vitals[O2LVL].absmin = 0;
+		vitals[O2LVL].lowth_dang = 20;
+		vitals[O2LVL].lowth_warn = 30;
+		vitals[O2LVL].val = 99;
+		vitals[O2LVL].uppth_warn = 100;
+		vitals[O2LVL].uppth_dang = 100;
+		vitals[O2LVL].absmax = 100;
+		vitals[O2LVL].skew = 1.f;
+		vitals[O2LVL].lowurg_dang = 1.0f;
+		vitals[O2LVL].lowurg_warn = 0.5f;
+		vitals[O2LVL].normurg = 0.0f;
+		vitals[O2LVL].uppurg_warn = 0.5f;
+		vitals[O2LVL].uppurg_dang = 1.0f;
+
+		vitals[RR2].absmin = 0;
+		vitals[RR2].lowth_dang = 2;
+		vitals[RR2].lowth_warn = 5;
+		vitals[RR2].val = 10;
+		vitals[RR2].uppth_warn = 30;
+		vitals[RR2].uppth_dang = 60;
+		vitals[RR2].absmax = 100;
+		vitals[RR2].skew = 0.8f;
+		vitals[RR2].lowurg_dang = 1.0f;
+		vitals[RR2].lowurg_warn = 0.5f;
+		vitals[RR2].normurg = 0.0f;
+		vitals[RR2].uppurg_warn = 0.5f;
+		vitals[RR2].uppurg_dang = 1.0f;
+
+		vitals[MAXPP].absmin = 0;
+		vitals[MAXPP].lowth_dang = 1;
+		vitals[MAXPP].lowth_warn = 2;
+		vitals[MAXPP].val = 10;
+		vitals[MAXPP].uppth_warn = 20;
+		vitals[MAXPP].uppth_dang = 30;
+		vitals[MAXPP].absmax = 40;
+		vitals[MAXPP].skew = 1.f;
+		vitals[MAXPP].lowurg_dang = 1.0f;
+		vitals[MAXPP].lowurg_warn = 0.5f;
+		vitals[MAXPP].normurg = 0.0f;
+		vitals[MAXPP].uppurg_warn = 0.5f;
+		vitals[MAXPP].uppurg_dang = 1.0f;
 	}
 
 };

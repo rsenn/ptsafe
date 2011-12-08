@@ -67,10 +67,11 @@ struct VitalSignParams {
 	double uppurg_dang;
 };
 
-enum ModifierTypes {DEFAULT_ALARM, NOISE, AM, DISTORTION, HARMONIC, SHEPPARD_UP, SHEPPARD_DN, GATE, AUDIOFILE, MATLAB, NUMALARMS};
+enum ModifierTypes {DEFAULT_ALARM, NOISE, AM, FM, DISTORTION, HARMONIC, SHEPPARD_UP, SHEPPARD_DN, GATE, AUDIOFILE, MATLAB, NUMALARMS};
 
-enum vitalTypes {DEFAULT_VITAL, HR, SPO2, RR, SYSBP, DIABP, MNBP, TEMP, ST, /*IR,*/ ETCO2,/* FICO2,
-				ETO2,*/ FIO2,/* ETN2O, FIN2O, ETAA,*/ FIAA,/* MAC, AMBP,*/ PPEAK, PEEP, /*PPLAT, TVI, TVE,
+enum vitalTypes {DEFAULT_VITAL, HR, SPO2, RR, SYSBP, DIABP, MNBP, TEMP, ST, /*IR,*/ ETCO2,
+				TV, MV, O2LVL, RR2, MAXPP,
+				/* FICO2, ETO2,*/ FIO2,/* ETN2O, FIN2O, ETAA,*/ FIAA,/* MAC, AMBP,*/ PPEAK, PEEP, /*PPLAT, TVI, TVE,
 				COMP,*/ MVE, /*CO, BT,*/ PCWP, NUMVITALS};
 
 
@@ -84,6 +85,7 @@ enum vitalTypes {DEFAULT_VITAL, HR, SPO2, RR, SYSBP, DIABP, MNBP, TEMP, ST, /*IR
 	This class is a container for AudioParameter objects that are instantiated by
 	SineAudioSource, and pointed to within the audioChain.  This class also acts
 	as a directory scanner, looking for new incoming patient data.
+
                                                                     //[/Comments]
 */
 class GUIcomponent  : public Component,

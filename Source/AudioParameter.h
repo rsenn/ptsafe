@@ -3,7 +3,7 @@
 
   This is an automatically generated file created by the Jucer!
 
-  Creation date:  15 Mar 2011 11:35:15am
+  Creation date:  18 Nov 2011 9:34:25am
 
   Be careful when adding custom code to these files, as only the code within
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
@@ -19,8 +19,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_E471E71F__
-#define __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_E471E71F__
+#ifndef __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_4DC263F3__
+#define __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_4DC263F3__
 
 //[Headers]     -- You can add your own extra header files here --
 #include "GUIcomponent.h"
@@ -45,7 +45,8 @@ class AudioParameter  : public Component,
                         public Timer,
                         public FileDragAndDropTarget,
                         public SliderListener,
-                        public ComboBoxListener
+                        public ComboBoxListener,
+                        public ButtonListener
 {
 public:
     //==============================================================================
@@ -93,8 +94,10 @@ public:
     void resized();
     void sliderValueChanged (Slider* sliderThatWasMoved);
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
+    void buttonClicked (Button* buttonThatWasClicked);
     void filesDropped (const StringArray& filenames, int mouseX, int mouseY);
     void mouseDown (const MouseEvent& e);
+
 
 
     //==============================================================================
@@ -140,6 +143,8 @@ private:
     Label* urgencyValue;
     Label* threshLabel;
     Label* threshVal;
+    ToggleButton* toggleContinuous;
+
 
     //==============================================================================
     // (prevent copy constructor and operator= being generated..)
@@ -148,4 +153,4 @@ private:
 };
 
 
-#endif   // __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_E471E71F__
+#endif   // __JUCER_HEADER_AUDIOPARAMETER_AUDIOPARAMETER_4DC263F3__
