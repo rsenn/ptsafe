@@ -1,0 +1,3 @@
+Project homepage: ptsafe.wordpress.com
+
+Patient Tracking Software for Audible Alarm Formulation and Evaluation (or PTSAFE) is a C++ based project developed at the Center for Patient Safety at the University of Miami - Jackson Memorial Hospital.  The purpose of this tool is to provide researchers with the ability to 1) load in custom alarm sounds for evaluation; and 2) interface with a patient monitor for rapid deployment to a medical simulation environment.  Novel alarms can be created with an internal sandbox of tools, or by loading in custom wave-files from disk, or by developing "smart algorithms" in MATLAB and porting over a compiled DLL into PTSAFE.
